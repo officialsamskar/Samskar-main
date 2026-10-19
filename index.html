@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Samskar brings puja rituals, photography, decoration and catering together for weddings and ceremonies across Bangalore, Mysore and Shimoga. Carrying traditions with trends.">
+<meta property="og:title" content="Samskar — Carrying Traditions with Trends">
+<meta property="og:description" content="Puja & rituals, photography, decoration and catering for your celebrations — serving Bangalore, Mysore and Shimoga.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://samskar.runs-on.dev/">
+<meta property="og:image" content="https://samskar.runs-on.dev/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Samskar — Carrying Traditions with Trends">
+<meta name="twitter:image" content="https://samskar.runs-on.dev/og-image.jpg">
+<link rel="canonical" href="https://samskar.runs-on.dev/">
+<title>Samskar — Carrying Traditions with Trends</title>
+<meta name="theme-color" content="#6E1F2B">
+<link rel="manifest" href="site.webmanifest">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="icon" type="image/x-icon" href="data:image/x-icon;base64,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">
+<link rel="icon" type="image/png" sizes="32x32" href="data:image/png;base64,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">
+<link rel="icon" type="image/png" sizes="48x48" href="data:image/png;base64,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">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Jost:wght@300;400;500;600&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Jost:wght@300;400;500;600&display=swap"></noscript>
+<style>
+:root {
+  --maroon: #6E1F2B;
+  --maroon-deep: #4A141C;
+  --gold: #C79A3C;
+  --gold-light: #E7C77E;
+  --green: #2F4A3C;
+  --ivory: #FBF3E6;
+  --ivory-dark: #F1E3C9;
+  --ink: #2B1B12;
+  --ink-soft: #5A4A3D;
+  --max: 1120px;
+}
+* {
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  margin: 0;
+  background: var(--ivory);
+  color: var(--ink);
+  font: 400 16px/1.6 'Jost',sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+h1,h2,h3,.serif {
+  font-family: 'Cormorant Garamond',serif;
+  color: var(--maroon-deep);
+  margin: 0;
+  font-weight: 600;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+img,svg {
+  display: block;
+  max-width: 100%;
+}
+.wrap {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 28px;
+}
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+/* ---------- Divider ornament ---------- */
+.divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin: 0 auto;
+}
+.divider .line {
+  height: 1px;
+  width: 64px;
+  background: linear-gradient(90deg,transparent,var(--gold),transparent);
+}
+.divider svg {
+  width: 16px;
+  height: 16px;
+  flex: none;
+}
+.divider img {
+  width: 52px;
+  height: auto;
+  flex: none;
+}
+/* ---------- Nav ---------- */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(251,243,230,0.92);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid rgba(199,154,60,0.35);
+}
+nav.wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 28px;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.monogram {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: var(--ivory);
+  border: 1.5px solid var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  overflow: hidden;
+}
+.monogram img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+.monogram.lg {
+  width: 76px;
+  height: 76px;
+}
+.brand-text .name {
+  font-size: 22px;
+  line-height: 1.1;
+  color: var(--maroon-deep);
+}
+.name.footer-mark {
+  font-size: 20px;
+}
+.brand-text .tag {
+  font-size: 10.5px;
+  color: var(--ink-soft);
+  letter-spacing: .14em;
+  text-transform: lowercase;
+}
+.nav-links {
+  display: none;
+  align-items: center;
+  gap: 28px;
+}
+.nav-links a {
+  font-size: 14.5px;
+  color: var(--ink-soft);
+}
+.nav-links a:hover {
+  color: var(--maroon);
+}
+@media (min-width:900px) {
+  .nav-links {
+    display: flex;
+  }
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 22px;
+  border-radius: 999px;
+  font-size: 14.5px;
+  font-weight: 500;
+  border: 1px solid transparent;
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+.btn-gold {
+  background: var(--maroon);
+  color: var(--gold-light);
+  border-color: var(--maroon);
+}
+.btn-gold:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(74,20,28,0.25);
+}
+.btn-ghost {
+  border-color: var(--maroon);
+  color: var(--maroon-deep);
+}
+.btn-ghost:hover {
+  background: var(--maroon);
+  color: var(--ivory);
+}
+.nav-cta {
+  display: none;
+}
+@media (min-width:760px) {
+  .nav-cta {
+    display: inline-flex;
+  }
+}
+/* ---------- Hero ---------- */
+.hero {
+  position: relative;
+  padding: 72px 0 90px;
+  overflow: hidden;
+  background: linear-gradient(rgba(251,243,230,0.86), rgba(251,243,230,0.94));
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+}
+.hero-panel {
+  width: 220px;
+  height: 220px;
+  margin: 0 auto 28px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 1.5px solid var(--gold);
+  box-shadow: 0 14px 34px rgba(74,20,28,0.18);
+  opacity: 0;
+  animation: rise .7s ease forwards;
+}
+.hero-panel img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+.hero-inner {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto;
+}
+.hero h1 {
+  font-size: clamp(38px,6vw,64px);
+  line-height: 1.08;
+  letter-spacing: .002em;
+  opacity: 0;
+  animation: rise .7s ease forwards;
+  animation-delay: .08s;
+}
+.hero h1 em {
+  font-style: italic;
+  color: var(--maroon);
+}
+.hero p.lede {
+  font-size: 18px;
+  color: var(--ink-soft);
+  margin: 22px auto 0;
+  max-width: 520px;
+  opacity: 0;
+  animation: rise .7s ease forwards;
+  animation-delay: .18s;
+}
+.hero-actions {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 34px;
+  opacity: 0;
+  animation: rise .7s ease forwards;
+  animation-delay: .28s;
+}
+.hero-locations {
+  margin-top: 38px;
+  font-size: 13.5px;
+  letter-spacing: .06em;
+  color: var(--ink-soft);
+  opacity: 0;
+  animation: rise .7s ease forwards;
+  animation-delay: .36s;
+}
+.hero-locations b {
+  color: var(--maroon-deep);
+  font-weight: 500;
+}
+@keyframes rise {
+  from{opacity:0;
+  transform: translateY(14px);
+  } to{opacity:1;
+  transform: translateY(0);
+  };
+}
+/* ---------- Intro strip ---------- */
+.intro {
+  padding: 56px 0;
+  text-align: center;
+}
+.intro .divider {
+  margin-bottom: 26px;
+}
+.intro p {
+  font-family: 'Cormorant Garamond',serif;
+  font-style: italic;
+  font-size: clamp(20px,2.6vw,26px);
+  color: var(--maroon-deep);
+  max-width: 680px;
+  margin: 0 auto;
+  line-height: 1.5;
+}
+/* ---------- Section heading ---------- */
+.section-head {
+  text-align: center;
+  margin-bottom: 48px;
+}
+.section-head h2 {
+  font-size: clamp(30px,4vw,42px);
+}
+.section-head p {
+  color: var(--ink-soft);
+  font-size: 15.5px;
+  margin-top: 10px;
+}
+section {
+  padding: 80px 0;
+}
+.band {
+  background: var(--ivory-dark);
+}
+/* ---------- Services (arch cards) ---------- */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  gap: 26px;
+}
+@media (min-width:700px) {
+  .services-grid {
+    grid-template-columns: repeat(3,1fr);
+  }
+}
+.service {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--ivory);
+  border: 1px solid rgba(199,154,60,0.4);
+  border-radius: 110px 110px 14px 14px;
+  padding: 38px 20px 24px;
+  text-align: center;
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+  position: relative;
+}
+.service:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 28px rgba(110,31,43,0.14);
+  border-color: var(--gold);
+}
+.service:active {
+  transform: translateY(-1px) scale(.99);
+}
+.service .icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--maroon);
+  border: 1.5px solid var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 18px;
+}
+.service .icon svg {
+  width: 28px;
+  height: 28px;
+  stroke: var(--gold-light);
+  fill: none;
+}
+.service .icon.icon-img {
+  background: var(--ivory-dark);
+}
+.service .icon.icon-img img {
+  width: 38px;
+  height: 38px;
+  object-fit: contain;
+}
+.service h3 {
+  font-size: 20px;
+  margin-bottom: 8px;
+}
+.service h3 .hint {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--ink-soft);
+  font-family: 'Jost',sans-serif;
+}
+.service p {
+  font-size: 13.8px;
+  color: var(--ink-soft);
+  line-height: 1.55;
+  margin: 0;
+  flex: 1;
+}
+.service .tap-hint {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px dashed rgba(199,154,60,0.5);
+  width: 100%;
+  justify-content: center;
+  font-size: 12px;
+  letter-spacing: .03em;
+  color: var(--green);
+  font-weight: 500;
+}
+.service .tap-hint svg {
+  width: 14px;
+  height: 14px;
+  stroke: var(--green);
+  fill: none;
+  flex: none;
+}
+.extra-line {
+  text-align: center;
+  margin-top: 40px;
+  font-size: 14.5px;
+  color: var(--ink-soft);
+  max-width: 640px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.extra-line b {
+  color: var(--maroon-deep);
+  font-weight: 500;
+}
+.extra-line a {
+  color: var(--maroon-deep);
+  font-weight: 500;
+  border-bottom: 1px solid var(--gold);
+}
+/* ---------- Why choose ---------- */
+.why-list {
+  max-width: 760px;
+  margin: 0 auto;
+  border-top: 1px solid rgba(199,154,60,0.4);
+}
+.why-item {
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  gap: 18px;
+  align-items: flex-start;
+  padding: 22px 4px;
+  border-bottom: 1px solid rgba(199,154,60,0.4);
+}
+.why-item .icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1.5px solid var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--maroon);
+}
+.why-item .icon svg {
+  width: 18px;
+  height: 18px;
+  stroke: var(--maroon);
+  fill: none;
+}
+.why-item h3 {
+  font-size: 19px;
+  margin-bottom: 4px;
+  font-family: 'Cormorant Garamond',serif;
+  font-weight: 600;
+}
+.why-item p {
+  font-size: 14px;
+  color: var(--ink-soft);
+  margin: 0;
+}
+/* ---------- Locations ---------- */
+.locations {
+  text-align: center;
+}
+.loc-row {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-top: 34px;
+}
+.loc-pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 22px;
+  border-radius: 999px;
+  border: 1px solid var(--gold);
+  color: var(--maroon-deep);
+  font-size: 15px;
+}
+.loc-pill svg {
+  width: 16px;
+  height: 16px;
+  stroke: var(--maroon);
+  fill: none;
+}
+/* ---------- FAQ ---------- */
+.faq-list {
+  max-width: 720px;
+  margin: 0 auto;
+}
+.faq-item {
+  border-bottom: 1px solid rgba(199,154,60,0.4);
+  padding: 18px 4px;
+}
+.faq-item summary {
+  cursor: pointer;
+  font-family: 'Cormorant Garamond',serif;
+  font-weight: 600;
+  font-size: 18px;
+  color: var(--maroon-deep);
+  list-style: none;
+}
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+.faq-item summary::after {
+  content: "+";
+  float: right;
+  color: var(--gold);
+  font-size: 20px;
+}
+.faq-item[open] summary::after {
+  content: "–";
+}
+.faq-item p {
+  margin: 12px 0 0;
+  font-size: 14.5px;
+  color: var(--ink-soft);
+  line-height: 1.6;
+}
+/* ---------- CTA ---------- */
+.cta {
+  background: var(--maroon);
+  color: var(--ivory);
+  border-radius: 28px;
+  padding: 56px 34px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.cta::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 20% 20%, rgba(231,199,126,0.16), transparent 45%),radial-gradient(circle at 85% 80%, rgba(231,199,126,0.14), transparent 45%);
+}
+.cta-inner {
+  position: relative;
+  z-index: 2;
+}
+.cta h2 {
+  color: var(--gold-light);
+  font-size: clamp(28px,4vw,38px);
+}
+.cta p {
+  color: rgba(251,243,230,0.82);
+  margin-top: 12px;
+  font-size: 15.5px;
+}
+.cta-actions {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  margin-top: 30px;
+  flex-wrap: wrap;
+}
+.cta .btn-gold {
+  background: var(--gold);
+  color: var(--maroon-deep);
+  border-color: var(--gold);
+}
+.cta .btn-ghost {
+  border-color: var(--gold-light);
+  color: var(--gold-light);
+}
+.cta .btn-ghost:hover {
+  background: var(--gold-light);
+  color: var(--maroon-deep);
+}
+/* ---------- Footer ---------- */
+footer {
+  padding: 52px 0 34px;
+  position: relative;
+  overflow: hidden;
+}
+.footer-top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  text-align: center;
+}
+.footer-tag {
+  font-size: 14px;
+  color: var(--ink-soft);
+  font-family: 'Cormorant Garamond',serif;
+  font-style: italic;
+}
+.footer-social {
+  display: flex;
+  gap: 20px;
+  margin-top: 6px;
+}
+.footer-social a {
+  font-size: 13.5px;
+  color: var(--maroon-deep);
+  border-bottom: 1px solid var(--gold);
+  padding-bottom: 2px;
+}
+.footer-fine {
+  margin-top: 0;
+  text-align: center;
+  font-size: 12px;
+  color: var(--ink-soft);
+}
+/* ---------- Floating WhatsApp CTA ---------- */
+.float-wa {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 60;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--green);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 24px rgba(0,0,0,0.22);
+}
+.float-wa svg {
+  width: 26px;
+  height: 26px;
+  stroke: #fff;
+  fill: none;
+}
+@media (min-width:900px) {
+  .float-wa {
+    display: none;
+  }
+}
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Samskar",
+  "description": "Puja & rituals, photography, decoration and catering for weddings and ceremonies. Carrying traditions with trends.",
+  "url": "https://samskar.runs-on.dev/",
+  "image": "https://samskar.runs-on.dev/og-image.jpg",
+  "logo": "https://samskar.runs-on.dev/images/logo.webp",
+  "telephone": "+918088839040",
+  "areaServed": [
+    {"@type": "City", "name": "Bangalore"},
+    {"@type": "City", "name": "Mysore"},
+    {"@type": "City", "name": "Shimoga"}
+  ],
+  "sameAs": [
+    "https://instagram.com/samskar.official"
+  ]
+}
+</script>
+</head>
+<body>
+
+<svg style="display:none" aria-hidden="true">
+  <symbol id="icon-arrow" viewBox="0 0 24 24" stroke-width="2"><path d="M4 4l16 8-16 8 4-8-4-8z"/></symbol>
+  <symbol id="icon-pin" viewBox="0 0 24 24" stroke-width="1.8"><path d="M12 21s7-6.5 7-12a7 7 0 0 0-14 0c0 5.5 7 12 7 12z"/><circle cx="12" cy="9" r="2.4"/></symbol>
+</svg>
+
+<header>
+  <nav class="wrap">
+    <div class="brand">
+      <div class="monogram"><img width="211" height="211" src="images/logo.webp" alt="Samskar emblem"></div>
+      <div class="brand-text">
+        <div class="name serif">Samskar</div>
+        <div class="tag">carrying traditions with trends</div>
+      </div>
+    </div>
+    <div class="nav-links">
+      <a href="#services">Services</a>
+      <a href="#why">Why Samskar</a>
+      <a href="#locations">Locations</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <a class="btn btn-gold nav-cta" href="https://wa.me/918088839040" target="_blank" rel="noopener">WhatsApp Us</a>
+  </nav>
+</header>
+
+<main>
+<section class="hero" style="background:linear-gradient(rgba(251,243,230,0.86), rgba(251,243,230,0.94)), url(images/photo-2.webp);background-size:cover;background-position:center top;background-repeat:no-repeat;">
+
+  <div class="wrap hero-inner">
+    <div class="hero-panel"><img src="images/logo.webp" alt="Samskar"></div>
+    <h1>Carrying traditions, <em>with trends.</em></h1>
+    <p class="lede">Samskar brings rituals, photography, décor and catering together — so every ceremony feels sacred, styled, and taken care of, start to finish.</p>
+    <div class="hero-actions">
+      <a class="btn btn-gold" href="https://wa.me/918088839040" target="_blank" rel="noopener">Plan your celebration</a>
+      <a class="btn btn-ghost" href="#services">See what we offer</a>
+    </div>
+    <div class="hero-locations">Serving families across <b>Bangalore</b> · <b>Mysore</b> · <b>Shimoga</b></div>
+  </div>
+</section>
+
+<section class="intro">
+  <div class="wrap">
+    <div class="divider">
+      <span class="line"></span>
+      <img src="images/photo-3.webp" width="160" height="122" alt="">
+      <span class="line"></span>
+    </div>
+    <p>Every ritual carries a story passed down through generations. We handle the details — the puja, the flowers, the food, the photographs — so your family can simply be present for the moment.</p>
+  </div>
+</section>
+
+<section id="services" class="band">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>What we take care of</h2>
+      <p>We manage it all, so you can cherish it all.</p>
+    </div>
+    <div class="services-grid">
+
+      <a class="service" href="https://wa.me/918088839040?text=Hi%20Samskar%2C%20I%27d%20like%20to%20know%20more%20about%20Jyothishya%20(astrology%20consultation)." target="_blank" rel="noopener">
+        <div class="icon">
+          <svg viewBox="0 0 24 24" stroke-width="1.6"><path d="M12 3l1.2 3.6L17 8l-3.8 1.4L12 13l-1.2-3.6L7 8l3.8-1.4L12 3z"/><circle cx="18" cy="17" r="2.4"/><circle cx="6" cy="18" r="1.6"/></svg>
+        </div>
+        <h3>Jyothishya <span class="hint">(astrology)</span></h3>
+        <p>Astrology consultations for guidance on dates, matches, and life's big moments.</p>
+        <span class="tap-hint"><svg><use href="#icon-arrow"/></svg>Tap to enquire on WhatsApp</span>
+      </a>
+
+      <a class="service" href="https://wa.me/918088839040?text=Hi%20Samskar%2C%20I%27d%20like%20to%20know%20more%20about%20Prashne%20(traditional%20query%20reading)." target="_blank" rel="noopener">
+        <div class="icon">
+          <svg viewBox="0 0 24 24" stroke-width="1.6"><path d="M9 9a3 3 0 1 1 4 2.8c-.8.4-1 .9-1 1.7"/><circle cx="12" cy="17" r=".6" fill="#E7C77E"/><circle cx="12" cy="12" r="9"/></svg>
+        </div>
+        <h3>Prashne <span class="hint">(query reading)</span></h3>
+        <p>Traditional query readings, offered with the same devotion and care as our rituals.</p>
+        <span class="tap-hint"><svg><use href="#icon-arrow"/></svg>Tap to enquire on WhatsApp</span>
+      </a>
+
+      <a class="service" href="https://wa.me/918088839040?text=Hi%20Samskar%2C%20I%27d%20like%20to%20know%20more%20about%20your%20Puja%20%26%20Rituals%20service." target="_blank" rel="noopener">
+        <div class="icon icon-img">
+          <img width="241" height="241" src="images/photo-4.webp" alt="Puja and rituals icon" loading="lazy">
+        </div>
+        <h3>Puja &amp; Rituals</h3>
+        <p>Traditional rituals performed with devotion, guidance, and deep respect for your customs.</p>
+        <span class="tap-hint"><svg><use href="#icon-arrow"/></svg>Tap to enquire on WhatsApp</span>
+      </a>
+
+      <a class="service" href="https://wa.me/918088839040?text=Hi%20Samskar%2C%20I%27d%20like%20to%20know%20more%20about%20your%20Photography%20service." target="_blank" rel="noopener">
+        <div class="icon">
+          <svg viewBox="0 0 24 24" stroke-width="1.6"><path d="M4 8h3l2-2h6l2 2h3v11H4V8z"/><circle cx="12" cy="13.5" r="3.5"/></svg>
+        </div>
+        <h3>Photography</h3>
+        <p>Candid moments and timeless memories, captured beautifully as they happen.</p>
+        <span class="tap-hint"><svg><use href="#icon-arrow"/></svg>Tap to enquire on WhatsApp</span>
+      </a>
+
+      <a class="service" href="https://wa.me/918088839040?text=Hi%20Samskar%2C%20I%27d%20like%20to%20know%20more%20about%20your%20Decoration%20service." target="_blank" rel="noopener">
+        <div class="icon icon-img">
+          <img width="267" height="267" src="images/photo-5.webp" alt="Decoration icon" loading="lazy">
+        </div>
+        <h3>Decoration</h3>
+        <p>Traditional aesthetics and modern elegance, styled for picture-perfect settings.</p>
+        <span class="tap-hint"><svg><use href="#icon-arrow"/></svg>Tap to enquire on WhatsApp</span>
+      </a>
+
+      <a class="service" href="https://wa.me/918088839040?text=Hi%20Samskar%2C%20I%27d%20like%20to%20know%20more%20about%20your%20Catering%20service." target="_blank" rel="noopener">
+        <div class="icon icon-img">
+          <img width="229" height="229" src="images/photo-6.webp" alt="Catering icon" loading="lazy">
+        </div>
+        <h3>Catering</h3>
+        <p>Authentic, hygienic vegetarian food, made with care — and it feels like home.</p>
+        <span class="tap-hint"><svg><use href="#icon-arrow"/></svg>Tap to enquire on WhatsApp</span>
+      </a>
+
+    </div>
+
+    <p class="extra-line">Every celebration is different — <a href="https://wa.me/918088839040?text=Hi%20Samskar%2C%20I%27d%20like%20to%20ask%20about%20a%20customised%20celebration%20package." target="_blank" rel="noopener">ask us about a customised package</a> built around your occasion.</p>
+  </div>
+</section>
+
+<section id="why">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Why choose Samskar</h2>
+      <p>We blend tradition with trend, so celebrations stay in your heart forever.</p>
+    </div>
+
+    <div class="why-list">
+
+      <div class="why-item">
+        <div class="icon"><svg viewBox="0 0 24 24" stroke-width="1.7"><circle cx="12" cy="8" r="3.2"/><path d="M5 20c0-4 3-6.5 7-6.5S19 16 19 20"/></svg></div>
+        <div><h3>Experienced &amp; trusted</h3><p>Years of guiding families through ceremonies large and small.</p></div>
+      </div>
+
+      <div class="why-item">
+        <div class="icon"><svg viewBox="0 0 24 24" stroke-width="1.7"><path d="M12 3c2 4 6 5 6 9a6 6 0 0 1-12 0c0-4 4-5 6-9z"/></svg></div>
+        <div><h3>Traditional values</h3><p>Every ritual is carried out with the guidance and respect it deserves.</p></div>
+      </div>
+
+      <div class="why-item">
+        <div class="icon"><svg viewBox="0 0 24 24" stroke-width="1.7"><path d="M12 2l1.6 5.6L19 9l-5.4 1.4L12 16l-1.6-5.6L5 9l5.4-1.4L12 2z"/></svg></div>
+        <div><h3>Modern approach</h3><p>Contemporary styling and planning, layered onto age-old customs.</p></div>
+      </div>
+
+      <div class="why-item">
+        <div class="icon"><svg viewBox="0 0 24 24" stroke-width="1.7"><path d="M4 12c2-5 6-8 8-8s6 3 8 8c-2 5-6 8-8 8s-6-3-8-8z"/><circle cx="12" cy="12" r="2.4"/></svg></div>
+        <div><h3>Attention to detail</h3><p>From the flowers to the final plate, nothing is left to chance.</p></div>
+      </div>
+
+      <div class="why-item">
+        <div class="icon"><svg viewBox="0 0 24 24" stroke-width="1.7"><rect x="5" y="4" width="14" height="16" rx="2"/><path d="M9 9h6M9 13h6M9 17h3"/></svg></div>
+        <div><h3>Personalised service</h3><p>Every package is shaped around your family and your occasion.</p></div>
+      </div>
+
+      <div class="why-item">
+        <div class="icon"><svg viewBox="0 0 24 24" stroke-width="1.7"><path d="M12 3l7 3v6c0 4.5-3 8-7 9-4-1-7-4.5-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg></div>
+        <div><h3>Complete peace of mind</h3><p>One team, one point of contact, everything handled.</p></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="locations" class="band locations">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Where we celebrate with you</h2>
+      <p>Wherever the ceremony is, we bring the team, the décor and the details.</p>
+    </div>
+    <div class="loc-row">
+      <div class="loc-pill"><svg><use href="#icon-pin"/></svg>Bangalore</div>
+      <div class="loc-pill"><svg><use href="#icon-pin"/></svg>Mysore</div>
+      <div class="loc-pill"><svg><use href="#icon-pin"/></svg>Shimoga</div>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Questions, answered</h2>
+      <p>Still deciding? Here's what people usually ask first.</p>
+    </div>
+    <div class="faq-list">
+      <details class="faq-item">
+        <summary>How much does it cost?</summary>
+        <p>There's no fixed price — it depends entirely on which services you choose, guest count, and how elaborate you want each part to be. Message us on WhatsApp with your occasion and requirements, and we'll work out a quote together.</p>
+      </details>
+      <details class="faq-item">
+        <summary>How far in advance should we book?</summary>
+        <p>The earlier the better, especially during festival and wedding season — but reach out even if your date is close and we'll do what we can.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Do you serve areas outside Bangalore, Mysore, and Shimoga?</summary>
+        <p>These are where we're based, but ask us on WhatsApp — we may still be able to help depending on your location.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Can we book just one service, like catering or decoration alone?</summary>
+        <p>Yes — every service can be booked on its own, or combined into a full package built around your event.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="cta">
+      <div class="cta-inner">
+        <h2 class="serif">Celebrate faith. Create memories.</h2>
+        <p>Tell us the date and the occasion — we'll take it from there.</p>
+        <div class="cta-actions">
+          <a class="btn btn-gold" href="https://wa.me/918088839040" target="_blank" rel="noopener">Message us on WhatsApp</a>
+          <a class="btn btn-ghost" href="https://instagram.com/samskar.official" target="_blank" rel="noopener">@samskar.official</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap footer-top">
+    <div class="monogram lg"><img width="211" height="211" src="images/logo.webp" alt="Samskar emblem" loading="lazy"></div>
+    <div class="name serif footer-mark">Samskar</div>
+    <div class="footer-tag">Celebrate Faith. Create Memories.</div>
+    <div class="footer-social">
+      <a href="https://instagram.com/samskar.official" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://wa.me/918088839040" target="_blank" rel="noopener">WhatsApp</a>
+    </div>
+    <div class="footer-fine">
+      © 2026 Samskar. Carrying traditions with trends — Bangalore · Mysore · Shimoga.
+    </div>
+  </div>
+</footer>
+
+<a class="float-wa" href="https://wa.me/918088839040" target="_blank" rel="noopener" aria-label="Message us on WhatsApp">
+  <svg viewBox="0 0 24 24" stroke-width="1.8"><path d="M12 3C6.5 3 2 6.8 2 11.5c0 2.4 1.2 4.6 3.1 6.1L4 21l3.8-1.4c1.3.5 2.7.8 4.2.8 5.5 0 10-3.8 10-8.5S17.5 3 12 3z"/></svg>
+</a>
+
+</body>
+</html>
