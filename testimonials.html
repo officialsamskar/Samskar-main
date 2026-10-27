@@ -1,0 +1,130 @@
+<!doctype html>
+<!-- Samskar main website: all testimonials, newest first, behind a door that opens when the page loads.
+     Save this file as testimonials.html next to index.html. The testimonials come from the Samskar admin app, so
+     nothing here needs editing when a new one is added. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>What families say · Samskar</title>
+<meta name="theme-color" content="#6E1F2B">
+<style>
+  :root{--maroon:#6E1F2B;--maroon-dark:#4a111b;--gold:#C88D17;--cream:#FFFAF3;--ink:#2a2220;--muted:#7a6f66;--line:#eadfca}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--cream);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.6}
+  a{color:var(--maroon)}
+  header.top{background:var(--maroon);border-bottom:3px solid var(--gold);padding:.9rem 1.25rem}
+  header.top a{color:#fff;text-decoration:none;font-family:Georgia,"Times New Roman",serif;font-size:1.35rem;letter-spacing:.02em}
+  main{max-width:760px;margin:0 auto;padding:2.5rem 1.25rem 4rem}
+  h1{font-family:Georgia,"Times New Roman",serif;font-size:2.1rem;line-height:1.2;margin:0 0 .4rem;text-align:center;color:var(--maroon)}
+  .sub{text-align:center;color:var(--muted);margin:0 0 1.6rem}
+  .actions{text-align:center;margin:0 0 2.2rem}
+  .btn{display:inline-block;background:var(--maroon);color:#fff;text-decoration:none;font-weight:600;padding:.75rem 1.5rem;min-height:46px;border-radius:999px;transition:transform .12s ease}
+  .btn:active{transform:scale(.97)}
+  .count{text-align:center;color:var(--muted);font-size:.9rem;margin:0 0 1rem}
+  .card{background:#fff;border-radius:18px;padding:1.5rem 1.4rem;margin:0 0 1.1rem;box-shadow:0 1px 2px rgba(42,34,32,.06),0 6px 18px rgba(42,34,32,.07);opacity:0;transform:translateY(10px);animation:rise .5s ease forwards}
+  .card blockquote{margin:0;font-size:1.12rem;line-height:1.7}
+  .card blockquote::before{content:"\201C";display:block;font-family:Georgia,serif;font-size:2.8rem;line-height:.8;color:var(--gold);margin-bottom:.2rem}
+  .card .who{margin-top:.9rem;font-weight:650;color:var(--maroon)}
+  .card .when{display:block;font-weight:400;color:var(--muted);font-size:.9rem}
+  .state{text-align:center;color:var(--muted);padding:2rem 0}
+  .state button{font:inherit;background:none;border:1px solid var(--maroon);color:var(--maroon);padding:.5rem 1.2rem;border-radius:999px;cursor:pointer;margin-top:.6rem}
+  @keyframes rise{to{opacity:1;transform:none}}
+
+  /* ---- the door: two leaves in the Samskar colours swing open when the page loads ---- */
+  .door{position:fixed;inset:0;z-index:999;display:flex;perspective:1800px;overflow:hidden}
+  .glow{position:absolute;inset:0;background:radial-gradient(ellipse at center,#fff3d6 0%,#f4d98f 40%,#d9a63a 100%);transition:opacity 1.8s ease .5s}
+  .leaf{position:relative;width:50%;height:100%;z-index:1;backface-visibility:hidden;
+    background:linear-gradient(90deg,#4f1520 0%,var(--maroon) 35%,#7d2634 100%);
+    transition:transform 2.4s cubic-bezier(.6,0,.3,1);
+    box-shadow:inset 0 0 0 9px var(--maroon-dark),inset 0 0 0 11px var(--gold),inset 0 0 40px rgba(0,0,0,.35)}
+  .leaf.left{transform-origin:0 50%}
+  .leaf.right{transform-origin:100% 50%;background:linear-gradient(270deg,#4f1520 0%,var(--maroon) 35%,#7d2634 100%)}
+  .leaf::before,.leaf::after{content:"";position:absolute;left:16%;right:16%;border:2px solid var(--gold);border-radius:6px;
+    box-shadow:inset 0 0 0 6px rgba(0,0,0,.12),0 0 18px rgba(0,0,0,.25)}
+  .leaf::before{top:9%;height:38%}
+  .leaf::after{bottom:9%;height:38%}
+  .knob{position:absolute;top:60%;width:26px;height:26px;margin-top:-13px;border-radius:50%;z-index:2;
+    background:radial-gradient(circle at 35% 30%,#f7dc8b,var(--gold) 60%,#8f6410);box-shadow:0 2px 6px rgba(0,0,0,.45)}
+  .left .knob{right:12px} .right .knob{left:12px}
+  .sign{position:absolute;left:0;right:0;top:38%;transform:translateY(-50%);z-index:3;text-align:center;pointer-events:none;
+    font-family:Georgia,"Times New Roman",serif;font-size:clamp(2rem,9vw,3.4rem);letter-spacing:.14em;color:#f5d98a;text-shadow:0 2px 12px rgba(0,0,0,.55);transition:opacity .6s ease}
+  .sign small{display:block;font-size:.8rem;letter-spacing:.3em;text-transform:uppercase;margin-top:.4rem;opacity:.85}
+  .door.open .left{transform:rotateY(-110deg)}
+  .door.open .right{transform:rotateY(110deg)}
+  .door.open .glow{opacity:0}
+  .door.open .sign{opacity:0}
+  .door.gone{display:none}
+  @media (prefers-reduced-motion:reduce){.door{display:none}.card{animation:none;opacity:1;transform:none}}
+</style>
+<noscript><style>.door{display:none}</style></noscript>
+</head>
+<body>
+<div class="door" id="door" aria-hidden="true">
+  <div class="glow"></div>
+  <div class="leaf left"><span class="knob"></span></div>
+  <div class="leaf right"><span class="knob"></span></div>
+  <div class="sign">SAMSKAR<small>Carrying traditions with trends</small></div>
+</div>
+
+<header class="top"><a href="/">Samskar</a></header>
+<main>
+  <h1>What families say</h1>
+  <p class="sub">Kind words from celebrations we've been part of.</p>
+  <p class="actions"><a class="btn" href="https://samskar-adminpage.vercel.app/share/">Share your experience</a></p>
+  <p class="count" id="count" hidden></p>
+  <div id="list" aria-live="polite"></div>
+  <p class="state" id="state">Loading testimonials&hellip;</p>
+</main>
+
+<script>
+(function () {
+  var FEED = 'https://samskar-adminpage.vercel.app/testimonials/data.json?limit=200';
+  var list = document.getElementById('list'), state = document.getElementById('state'), count = document.getElementById('count');
+
+  function load() {
+    state.hidden = false; state.textContent = 'Loading testimonials\u2026';
+    var ctrl = window.AbortController ? new AbortController() : null;
+    var guard = setTimeout(function () { if (ctrl) ctrl.abort(); }, 10000);
+    fetch(FEED, ctrl ? { signal: ctrl.signal } : undefined)
+      .then(function (r) { if (!r.ok) throw new Error('bad status'); return r.json(); })
+      .then(function (data) { clearTimeout(guard); show(data && Array.isArray(data.testimonials) ? data.testimonials : []); })
+      .catch(function () {
+        clearTimeout(guard);
+        state.textContent = "We couldn't load the testimonials just now. ";
+        var b = document.createElement('button'); b.type = 'button'; b.textContent = 'Try again'; b.onclick = load;
+        state.appendChild(document.createElement('br')); state.appendChild(b);
+      });
+  }
+
+  function show(items) {              // the feed is already newest first
+    list.textContent = '';
+    if (!items.length) { state.textContent = 'Testimonials will appear here soon.'; return; }
+    state.hidden = true;
+    count.hidden = false; count.textContent = items.length + (items.length === 1 ? ' testimonial' : ' testimonials') + ', newest first';
+    items.forEach(function (t, i) {
+      var card = document.createElement('article'), q = document.createElement('blockquote'), who = document.createElement('div');
+      card.className = 'card'; card.style.animationDelay = Math.min(i, 12) * 70 + 'ms';
+      q.textContent = t.quote;                                  // textContent: never inserted as HTML
+      who.className = 'who'; who.textContent = t.author;
+      if (t.event_day) { var w = document.createElement('span'); w.className = 'when'; w.textContent = t.event_day; who.appendChild(w); }
+      card.appendChild(q); card.appendChild(who); list.appendChild(card);
+    });
+  }
+  load();
+
+  // the door: opens by itself shortly after the page loads; tap to open it sooner
+  var door = document.getElementById('door');
+  if (!door) return;
+  if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) { door.remove(); return; }
+  var opened = false;
+  function open() {
+    if (opened) return; opened = true; door.classList.add('open');
+    setTimeout(function () { door.classList.add('gone'); }, 3000);
+  }
+  door.addEventListener('click', open); document.addEventListener('keydown', open);
+  setTimeout(open, 700);
+})();
+</script>
+</body>
+</html>
