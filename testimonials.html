@@ -41,6 +41,11 @@
   --ivory-rgb: 251,243,230;
   --ink-rgb: 43,27,18;
   --line: rgba(var(--gold-rgb),.4);
+  /* Neumorphism: a lightened ivory highlight and a maroon-deep shadow */
+  --neo-hi-rgb: 255,252,246;
+  --neo-hi: rgba(var(--neo-hi-rgb),.95);
+  --neo-lo: rgba(var(--maroon-deep-rgb),.16);
+  --neo-raised: 9px 9px 20px var(--neo-lo), -9px -9px 20px var(--neo-hi);
   --max: 1120px;
   color-scheme: light;
 }
@@ -216,12 +221,12 @@ h1 {
   margin: 0 auto;
 }
 .card {
-  margin: 0 0 20px;
+  margin: 0 0 28px;
   padding: 30px 28px 26px;
   text-align: center;
-  background: var(--ivory-dark);
-  border: 1px solid var(--line);
+  background: var(--ivory);
   border-radius: 22px;
+  box-shadow: var(--neo-raised);
   opacity: 0;
   transform: translateY(12px);
   animation: rise .6s ease forwards;
@@ -459,6 +464,11 @@ footer {
 }
 .door.gone {
   display: none;
+}
+@media (max-width: 700px) {
+  :root {
+    --neo-raised: 6px 6px 14px var(--neo-lo), -6px -6px 14px var(--neo-hi);
+  }
 }
 @media (max-width: 520px) {
   .wrap, header.top .wrap {

@@ -50,6 +50,13 @@
   /* Semantic tokens */
   --line: rgba(var(--gold-rgb),.4);
   --line-strong: rgba(var(--gold-rgb),.5);
+  /* Neumorphism: a lightened ivory highlight and a maroon-deep shadow */
+  --neo-hi-rgb: 255,252,246;
+  --neo-hi: rgba(var(--neo-hi-rgb),.95);
+  --neo-lo: rgba(var(--maroon-deep-rgb),.16);
+  --neo-raised: 9px 9px 20px var(--neo-lo), -9px -9px 20px var(--neo-hi);
+  --neo-raised-sm: 5px 5px 12px var(--neo-lo), -5px -5px 12px var(--neo-hi);
+  --neo-inset: inset 5px 5px 11px var(--neo-lo), inset -5px -5px 11px var(--neo-hi);
   --max: 1120px;
   color-scheme: light;
 }
@@ -353,11 +360,16 @@ section {
 .band {
   background: var(--ivory-dark);
 }
-/* ---------- Services (arch cards) ---------- */
+/* ---------- Services (rounded cards) ---------- */
 .services-grid {
   display: grid;
   grid-template-columns: repeat(2,minmax(0,1fr));
   gap: 26px;
+}
+@media (max-width:700px) {
+  :root {
+    --neo-raised: 6px 6px 14px var(--neo-lo), -6px -6px 14px var(--neo-hi);
+  }
 }
 @media (min-width:700px) {
   .services-grid {
@@ -368,21 +380,27 @@ section {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: var(--ivory);
-  border: 1px solid var(--line);
-  border-radius: 110px 110px 14px 14px;
-  padding: 38px 20px 24px;
+  background: var(--ivory-dark);
+  border: 1px solid rgba(var(--neo-hi-rgb),.5);
+  border-radius: 20px;
+  box-shadow: var(--neo-raised);
+  padding: 30px 20px 24px;
   text-align: center;
   transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
   position: relative;
 }
 .service:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 14px 28px rgba(var(--maroon-rgb),.14);
-  border-color: var(--gold);
+  transform: translateY(-3px);
+  box-shadow: 12px 12px 26px var(--neo-lo), -12px -12px 26px var(--neo-hi);
 }
 .service:active {
-  transform: translateY(-1px) scale(.99);
+  transform: none;
+  box-shadow: var(--neo-inset);
+}
+@media (max-width: 520px) {
+  .service {
+    padding: 26px 14px 20px;
+  }
 }
 .service .icon {
   width: 64px;
@@ -390,6 +408,7 @@ section {
   border-radius: 50%;
   background: var(--maroon);
   border: 1.5px solid var(--gold);
+  box-shadow: 3px 3px 8px rgba(var(--maroon-deep-rgb),.28), -3px -3px 8px var(--neo-hi);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -414,6 +433,9 @@ section {
   margin-bottom: 8px;
 }
 .service h3 .hint {
+  display: block;
+  margin-top: 2px;
+  line-height: 1.4;
   font-size: 13px;
   font-weight: 400;
   color: var(--ink-soft);
@@ -432,7 +454,8 @@ section {
   gap: 6px;
   margin-top: 16px;
   padding-top: 14px;
-  border-top: 1px dashed var(--line-strong);
+  border-top: 1px solid rgba(var(--maroon-deep-rgb),.12);
+  box-shadow: inset 0 1px 0 var(--neo-hi);
   width: 100%;
   justify-content: center;
   text-align: center;
@@ -512,9 +535,9 @@ section {
   padding: 0 0 80px;
 }
 .quotes-card {
-  background: var(--ivory-dark);
-  border: 1px solid var(--line);
+  background: var(--ivory);
   border-radius: 28px;
+  box-shadow: var(--neo-raised);
   padding: 52px 28px 40px;
   text-align: center;
 }
@@ -692,11 +715,11 @@ button.btn-ghost {
   margin: 0 auto;
 }
 .all-list .q {
-  margin: 0 0 18px;
+  margin: 0 0 22px;
   padding: 24px 22px 20px;
-  background: var(--ivory-dark);
-  border: 1px solid var(--line);
+  background: var(--ivory);
   border-radius: 20px;
+  box-shadow: var(--neo-raised-sm);
 }
 .all-list .q blockquote {
   font-size: clamp(18px,2.3vw,22px);
