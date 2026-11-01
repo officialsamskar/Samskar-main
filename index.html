@@ -94,7 +94,7 @@ img,svg {
     opacity: 1 !important;
   }
 }
-a:focus-visible, summary:focus-visible {
+a:focus-visible, summary:focus-visible, button:focus-visible {
   outline: 3px solid var(--maroon);
   outline-offset: 3px;
   border-radius: 6px;
@@ -507,6 +507,280 @@ section {
   color: var(--ink-soft);
   margin: 0;
 }
+/* ---------- Testimonials ---------- */
+.testimonials {
+  padding: 0 0 80px;
+}
+.quotes-card {
+  background: var(--ivory-dark);
+  border: 1px solid var(--line);
+  border-radius: 28px;
+  padding: 52px 28px 40px;
+  text-align: center;
+}
+.quotes-card .section-head {
+  margin-bottom: 30px;
+}
+.quotes .slides {
+  max-width: 720px;
+  margin: 0 auto;
+}
+.q {
+  margin: 0;
+  padding: 0 4px;
+}
+.q blockquote {
+  margin: 0;
+  font-family: 'Cormorant Garamond',serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(20px,2.6vw,26px);
+  line-height: 1.5;
+  color: var(--maroon-deep);
+}
+.q blockquote::before {
+  content: "\201C";
+  content: "\201C" / "";
+  display: block;
+  height: 30px;
+  font-size: 60px;
+  line-height: .9;
+  font-style: normal;
+  color: var(--gold);
+}
+.q figcaption {
+  margin-top: 18px;
+  font-size: 14.5px;
+  color: var(--ink-soft);
+}
+.q .qauthor {
+  color: var(--maroon-deep);
+  font-weight: 500;
+}
+.q .qdate {
+  display: block;
+  margin-top: 2px;
+  font-size: 13px;
+}
+.quotes-more {
+  margin-top: 28px;
+}
+button.btn-ghost {
+  background: transparent;
+  font-family: inherit;
+  cursor: pointer;
+}
+.quotes-more[hidden] {
+  display: none;
+}
+/* ---------- Testimonials: door reveal ---------- */
+.doorway {
+  --stage-w: min(94vw, 760px);
+  --stage-h: min(86vh, 760px);
+  --arch: min(calc(var(--stage-w) / 2), calc(var(--stage-h) / 3));
+  --mandala: min(var(--stage-w), var(--stage-h));
+  --logo: calc(var(--mandala) * .3);
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  background: transparent;
+  align-items: center;
+  justify-content: center;
+}
+@supports (height: 1dvh) {
+  .doorway {
+    --stage-h: min(86dvh, 760px);
+  }
+}
+.doorway[open] {
+  display: flex;
+}
+.doorway::backdrop {
+  background: rgba(var(--maroon-deep-rgb),.88);
+  backdrop-filter: blur(3px);
+}
+.doorway-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border-radius: 50%;
+  border: 1.5px solid var(--gold);
+  background: var(--ivory);
+  color: var(--maroon);
+  cursor: pointer;
+}
+.doorway-close svg {
+  width: 18px;
+  height: 18px;
+  stroke: currentColor;
+  fill: none;
+}
+.doorway-stage {
+  position: relative;
+  width: var(--stage-w);
+  height: var(--stage-h);
+  border-radius: var(--arch) var(--arch) 18px 18px;
+  border: 2px solid var(--gold);
+  background: var(--maroon-deep);
+  box-shadow: 0 0 0 6px rgba(var(--gold-light-rgb),.18), 0 30px 80px rgba(var(--ink-rgb),.5);
+  overflow: hidden;
+  perspective: 1700px;
+}
+.doorway-room {
+  position: absolute;
+  inset: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: calc(var(--arch) * .42) clamp(18px,5vw,48px) 36px;
+  background: radial-gradient(ellipse at 50% 0%, rgba(var(--gold-light-rgb),.4), transparent 65%), var(--ivory);
+  text-align: center;
+  transform: scale(.93);
+  transition: transform 1.3s cubic-bezier(.2,.7,.2,1);
+}
+.doorway.is-open .doorway-room {
+  transform: none;
+}
+.doorway-room h2 {
+  font-size: clamp(28px,4vw,38px);
+}
+.doorway-room .sub {
+  margin: 8px 0 26px;
+  font-size: 15px;
+  color: var(--ink-soft);
+}
+.all-list {
+  max-width: 640px;
+  margin: 0 auto;
+}
+.all-list .q {
+  margin: 0 0 18px;
+  padding: 24px 22px 20px;
+  background: var(--ivory-dark);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+}
+.all-list .q blockquote {
+  font-size: clamp(18px,2.3vw,22px);
+}
+.all-list .q blockquote::before {
+  height: 24px;
+  font-size: 48px;
+}
+.door {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 2;
+  overflow: hidden;
+  backface-visibility: hidden;
+  color: var(--gold-light);
+  pointer-events: none;
+  transition: transform .9s cubic-bezier(.5,0,.3,1), opacity .35s ease;
+}
+.door-left {
+  left: 0;
+  width: calc(50% + .5px);
+  transform-origin: 0 50%;
+  background: radial-gradient(120% 80% at 100% 50%, rgba(var(--gold-light-rgb),.14), transparent 62%), linear-gradient(180deg, var(--maroon), var(--maroon-deep));
+  box-shadow: inset -14px 0 28px rgba(var(--maroon-deep-rgb),.55);
+}
+.door-right {
+  right: 0;
+  width: 50%;
+  transform-origin: 100% 50%;
+  background: radial-gradient(120% 80% at 0% 50%, rgba(var(--gold-light-rgb),.14), transparent 62%), linear-gradient(180deg, var(--maroon), var(--maroon-deep));
+  box-shadow: inset 14px 0 28px rgba(var(--maroon-deep-rgb),.55);
+}
+.door::before {
+  content: "";
+  position: absolute;
+  inset: 14px;
+  border: 1.5px solid rgba(var(--gold-light-rgb),.55);
+}
+.door-left::before {
+  border-radius: calc(var(--arch) - 14px) 0 0 14px;
+}
+.door-right::before {
+  border-radius: 0 calc(var(--arch) - 14px) 14px 0;
+}
+.door svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.door-logo {
+  position: absolute;
+  top: 50%;
+  width: var(--logo);
+  height: var(--logo);
+  margin-top: calc(var(--logo) / -2);
+  border-radius: 50%;
+  overflow: hidden;
+  background: var(--ivory);
+  border: 2px solid var(--gold);
+  box-shadow: 0 0 0 4px rgba(var(--maroon-deep-rgb),.6), 0 6px 18px rgba(var(--ink-rgb),.35);
+}
+.door-left .door-logo {
+  right: calc(var(--logo) / -2);
+}
+.door-right .door-logo {
+  left: calc(var(--logo) / -2);
+}
+.door-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+.doorway.is-open .door {
+  transition: transform 1.3s cubic-bezier(.6,0,.2,1), opacity .5s ease .85s;
+  opacity: 0;
+}
+.doorway.is-open .door-left {
+  transform: rotateY(100deg);
+}
+.doorway.is-open .door-right {
+  transform: rotateY(-100deg);
+}
+.doorway-room .state {
+  margin: 0 0 18px;
+  padding: 10px 0;
+  font-size: 15px;
+  color: var(--ink-soft);
+}
+.doorway-room .state button {
+  margin-top: 10px;
+  padding: 9px 20px;
+  font-size: 14px;
+}
+.doorway-room .share {
+  margin: 26px 0 0;
+  font-size: 14.5px;
+  color: var(--ink-soft);
+}
+.doorway-room .share a {
+  color: var(--maroon-deep);
+  font-weight: 500;
+  border-bottom: 1px solid var(--gold);
+}
+html.door-lock {
+  overflow: hidden;
+}
 /* ---------- Locations ---------- */
 .locations {
   text-align: center;
@@ -710,6 +984,7 @@ footer {
 
 <svg style="display:none" aria-hidden="true">
   <symbol id="icon-arrow" viewBox="0 0 24 24" stroke-width="2"><path d="M4 4l16 8-16 8 4-8-4-8z"/></symbol>
+  <symbol id="icon-mandala" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><defs><path id="m-po" d="M100 22C108 33 108 43 100 54C92 43 92 33 100 22Z" stroke-width=".7" fill="currentColor" fill-opacity=".14"/><path id="m-pi" d="M100 36C113 50 113 64 100 78C87 64 87 50 100 36Z" stroke-width=".8" fill="currentColor" fill-opacity=".16"/><circle id="m-dot" cx="100" cy="18.5" r=".95" fill="currentColor" stroke="none"/><path id="m-ray" d="M100 40L103 50L100 54L97 50Z" stroke-width=".6" fill="currentColor" fill-opacity=".25"/></defs><circle cx="100" cy="100" r="88" stroke-width="1.1"/><circle cx="100" cy="100" r="84.5" stroke-width=".4"/><use href="#m-dot" transform="rotate(0 100 100)"/><use href="#m-dot" transform="rotate(7.5 100 100)"/><use href="#m-dot" transform="rotate(15 100 100)"/><use href="#m-dot" transform="rotate(22.5 100 100)"/><use href="#m-dot" transform="rotate(30 100 100)"/><use href="#m-dot" transform="rotate(37.5 100 100)"/><use href="#m-dot" transform="rotate(45 100 100)"/><use href="#m-dot" transform="rotate(52.5 100 100)"/><use href="#m-dot" transform="rotate(60 100 100)"/><use href="#m-dot" transform="rotate(67.5 100 100)"/><use href="#m-dot" transform="rotate(75 100 100)"/><use href="#m-dot" transform="rotate(82.5 100 100)"/><use href="#m-dot" transform="rotate(90 100 100)"/><use href="#m-dot" transform="rotate(97.5 100 100)"/><use href="#m-dot" transform="rotate(105 100 100)"/><use href="#m-dot" transform="rotate(112.5 100 100)"/><use href="#m-dot" transform="rotate(120 100 100)"/><use href="#m-dot" transform="rotate(127.5 100 100)"/><use href="#m-dot" transform="rotate(135 100 100)"/><use href="#m-dot" transform="rotate(142.5 100 100)"/><use href="#m-dot" transform="rotate(150 100 100)"/><use href="#m-dot" transform="rotate(157.5 100 100)"/><use href="#m-dot" transform="rotate(165 100 100)"/><use href="#m-dot" transform="rotate(172.5 100 100)"/><use href="#m-dot" transform="rotate(180 100 100)"/><use href="#m-dot" transform="rotate(187.5 100 100)"/><use href="#m-dot" transform="rotate(195 100 100)"/><use href="#m-dot" transform="rotate(202.5 100 100)"/><use href="#m-dot" transform="rotate(210 100 100)"/><use href="#m-dot" transform="rotate(217.5 100 100)"/><use href="#m-dot" transform="rotate(225 100 100)"/><use href="#m-dot" transform="rotate(232.5 100 100)"/><use href="#m-dot" transform="rotate(240 100 100)"/><use href="#m-dot" transform="rotate(247.5 100 100)"/><use href="#m-dot" transform="rotate(255 100 100)"/><use href="#m-dot" transform="rotate(262.5 100 100)"/><use href="#m-dot" transform="rotate(270 100 100)"/><use href="#m-dot" transform="rotate(277.5 100 100)"/><use href="#m-dot" transform="rotate(285 100 100)"/><use href="#m-dot" transform="rotate(292.5 100 100)"/><use href="#m-dot" transform="rotate(300 100 100)"/><use href="#m-dot" transform="rotate(307.5 100 100)"/><use href="#m-dot" transform="rotate(315 100 100)"/><use href="#m-dot" transform="rotate(322.5 100 100)"/><use href="#m-dot" transform="rotate(330 100 100)"/><use href="#m-dot" transform="rotate(337.5 100 100)"/><use href="#m-dot" transform="rotate(345 100 100)"/><use href="#m-dot" transform="rotate(352.5 100 100)"/><use href="#m-po" transform="rotate(0 100 100)"/><use href="#m-po" transform="rotate(15 100 100)"/><use href="#m-po" transform="rotate(30 100 100)"/><use href="#m-po" transform="rotate(45 100 100)"/><use href="#m-po" transform="rotate(60 100 100)"/><use href="#m-po" transform="rotate(75 100 100)"/><use href="#m-po" transform="rotate(90 100 100)"/><use href="#m-po" transform="rotate(105 100 100)"/><use href="#m-po" transform="rotate(120 100 100)"/><use href="#m-po" transform="rotate(135 100 100)"/><use href="#m-po" transform="rotate(150 100 100)"/><use href="#m-po" transform="rotate(165 100 100)"/><use href="#m-po" transform="rotate(180 100 100)"/><use href="#m-po" transform="rotate(195 100 100)"/><use href="#m-po" transform="rotate(210 100 100)"/><use href="#m-po" transform="rotate(225 100 100)"/><use href="#m-po" transform="rotate(240 100 100)"/><use href="#m-po" transform="rotate(255 100 100)"/><use href="#m-po" transform="rotate(270 100 100)"/><use href="#m-po" transform="rotate(285 100 100)"/><use href="#m-po" transform="rotate(300 100 100)"/><use href="#m-po" transform="rotate(315 100 100)"/><use href="#m-po" transform="rotate(330 100 100)"/><use href="#m-po" transform="rotate(345 100 100)"/><use href="#m-pi" transform="rotate(15 100 100)"/><use href="#m-pi" transform="rotate(45 100 100)"/><use href="#m-pi" transform="rotate(75 100 100)"/><use href="#m-pi" transform="rotate(105 100 100)"/><use href="#m-pi" transform="rotate(135 100 100)"/><use href="#m-pi" transform="rotate(165 100 100)"/><use href="#m-pi" transform="rotate(195 100 100)"/><use href="#m-pi" transform="rotate(225 100 100)"/><use href="#m-pi" transform="rotate(255 100 100)"/><use href="#m-pi" transform="rotate(285 100 100)"/><use href="#m-pi" transform="rotate(315 100 100)"/><use href="#m-pi" transform="rotate(345 100 100)"/><circle cx="100" cy="100" r="40" stroke-width=".8"/><circle cx="100" cy="100" r="36.5" stroke-width=".5" stroke-dasharray="1.2 2.4"/><use href="#m-ray" transform="rotate(0 100 100)"/><use href="#m-ray" transform="rotate(22.5 100 100)"/><use href="#m-ray" transform="rotate(45 100 100)"/><use href="#m-ray" transform="rotate(67.5 100 100)"/><use href="#m-ray" transform="rotate(90 100 100)"/><use href="#m-ray" transform="rotate(112.5 100 100)"/><use href="#m-ray" transform="rotate(135 100 100)"/><use href="#m-ray" transform="rotate(157.5 100 100)"/><use href="#m-ray" transform="rotate(180 100 100)"/><use href="#m-ray" transform="rotate(202.5 100 100)"/><use href="#m-ray" transform="rotate(225 100 100)"/><use href="#m-ray" transform="rotate(247.5 100 100)"/><use href="#m-ray" transform="rotate(270 100 100)"/><use href="#m-ray" transform="rotate(292.5 100 100)"/><use href="#m-ray" transform="rotate(315 100 100)"/><use href="#m-ray" transform="rotate(337.5 100 100)"/><circle cx="100" cy="100" r="34" stroke-width="1"/></symbol>
   <symbol id="icon-pin" viewBox="0 0 24 24" stroke-width="1.8"><path d="M12 21s7-6.5 7-12a7 7 0 0 0-14 0c0 5.5 7 12 7 12z"/><circle cx="12" cy="9" r="2.4"/></symbol>
 </svg>
 
@@ -870,6 +1145,21 @@ footer {
   </div>
 </section>
 
+<section id="testimonials" class="testimonials" aria-labelledby="t-head" hidden>
+  <div class="wrap">
+    <div class="quotes-card quotes">
+      <div class="section-head">
+        <h2 id="t-head">Kind words from our families</h2>
+        <p>Shared by the people we've celebrated with.</p>
+      </div>
+      <div class="slides" data-latest></div>
+      <div class="quotes-more" hidden>
+        <button type="button" class="btn btn-ghost" id="read-all" aria-haspopup="dialog">Read all testimonials</button>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="locations" class="band locations">
   <div class="wrap">
     <div class="section-head">
@@ -945,6 +1235,136 @@ footer {
 <a class="float-wa" href="https://wa.me/918088839040" target="_blank" rel="noopener" aria-label="Message us on WhatsApp">
   <svg viewBox="0 0 24 24" stroke-width="1.8"><path d="M12 3C6.5 3 2 6.8 2 11.5c0 2.4 1.2 4.6 3.1 6.1L4 21l3.8-1.4c1.3.5 2.7.8 4.2.8 5.5 0 10-3.8 10-8.5S17.5 3 12 3z"/></svg>
 </a>
+
+<dialog id="all-quotes" class="doorway" aria-labelledby="all-head">
+  <button type="button" class="doorway-close" aria-label="Close testimonials">
+    <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+  </button>
+  <div class="doorway-stage">
+    <div class="doorway-room">
+      <h2 id="all-head">Every story, in their words</h2>
+      <p class="sub">Kind words from the families we've celebrated with.</p>
+      <p class="state" id="all-state" hidden></p>
+      <div class="all-list"></div>
+      <p class="share"><a href="https://samskar-adminpage.vercel.app/share/" target="_blank" rel="noopener">Share your experience</a></p>
+    </div>
+    <div class="door door-left" aria-hidden="true">
+      <svg viewBox="0 0 100 200" preserveAspectRatio="xMaxYMid meet"><use href="#icon-mandala" x="0" y="0" width="200" height="200"/></svg>
+      <div class="door-logo"><img src="images/logo.webp" alt="" width="211" height="211"></div>
+    </div>
+    <div class="door door-right" aria-hidden="true">
+      <svg viewBox="100 0 100 200" preserveAspectRatio="xMinYMid meet"><use href="#icon-mandala" x="0" y="0" width="200" height="200"/></svg>
+      <div class="door-logo"><img src="images/logo.webp" alt="" width="211" height="211"></div>
+    </div>
+  </div>
+</dialog>
+
+<script>
+(function () {
+  /* Testimonials come from the Samskar admin app (already newest first), so nothing here needs editing
+     when a new one is added. If the feed can't be reached, the section simply stays hidden. */
+  var FEED = 'https://samskar-adminpage.vercel.app/testimonials/data.json';
+  var FEED_ALL = FEED + '?limit=200';
+  var guard = (window.SelfHeal && window.SelfHeal.guard) || function (fn) { return fn; };
+
+  function getJSON(url, ms) {
+    var ctrl = window.AbortController ? new AbortController() : null;
+    var timer = setTimeout(function () { if (ctrl) ctrl.abort(); }, ms);
+    return fetch(url, ctrl ? { signal: ctrl.signal } : undefined)
+      .then(function (r) { if (!r.ok) throw new Error('bad status'); return r.json(); })
+      .then(function (d) { clearTimeout(timer); return d && Array.isArray(d.testimonials) ? d.testimonials : []; },
+            function (e) { clearTimeout(timer); throw e; });
+  }
+  function build(t) {                                   // textContent only: never inserted as HTML
+    var fig = document.createElement('figure');
+    fig.className = 'q';
+    var bq = document.createElement('blockquote');
+    bq.textContent = t.quote;
+    var cap = document.createElement('figcaption');
+    var who = document.createElement('span');
+    who.className = 'qauthor';
+    who.textContent = t.author || '';
+    cap.appendChild(who);
+    if (t.event_day) {                                  // e.g. "Sunday, 12 October 2025"
+      var d = document.createElement('span');
+      d.className = 'qdate';
+      d.textContent = t.event_day;
+      cap.appendChild(d);
+    }
+    fig.appendChild(bq); fig.appendChild(cap);
+    return fig;
+  }
+
+  var section = document.getElementById('testimonials');
+  if (!section || !window.fetch) return;
+
+  getJSON(FEED, 8000).then(guard(function (items) {
+    if (!items.length) return;
+    section.querySelector('[data-latest]').appendChild(build(items[0]));   // the latest one
+    section.hidden = false;
+    if (items.length < 2) return;
+
+    var more = section.querySelector('.quotes-more');
+    var btn = document.getElementById('read-all');
+    var dlg = document.getElementById('all-quotes');
+    if (!more || !btn || !dlg) return;
+    more.hidden = false;
+    if (typeof dlg.showModal !== 'function') {          // very old browsers: use the full page instead
+      btn.addEventListener('click', function () { location.href = '/testimonials.html'; });
+      return;
+    }
+
+    var room = dlg.querySelector('.doorway-room');
+    var list = dlg.querySelector('.all-list');
+    var stateEl = document.getElementById('all-state');
+    var reduced = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var html = document.documentElement, all = null, closing = false, openTimer;
+
+    function loadAll() {                                // fetched on the first click, then kept
+      if (all) return Promise.resolve();
+      stateEl.hidden = false;
+      stateEl.textContent = 'Loading testimonials\u2026';
+      return getJSON(FEED_ALL, 10000).then(function (more) {
+        all = more.length ? more : items;
+        list.textContent = '';
+        all.forEach(function (t) { list.appendChild(build(t)); });
+        stateEl.hidden = true;
+      }).catch(function () {
+        stateEl.textContent = "We couldn't load the testimonials just now. ";
+        var b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'btn btn-ghost';
+        b.textContent = 'Try again';
+        b.addEventListener('click', function () { loadAll(); });
+        stateEl.appendChild(document.createElement('br'));
+        stateEl.appendChild(b);
+      });
+    }
+    function openAll() {
+      clearTimeout(openTimer);
+      closing = false;
+      dlg.classList.remove('is-open');
+      room.scrollTop = 0;
+      html.classList.add('door-lock');
+      dlg.showModal();
+      var pause = new Promise(function (done) { openTimer = setTimeout(done, reduced ? 0 : 450); });   // doors are seen closed first
+      Promise.all([pause, loadAll()]).then(function () { if (dlg.open && !closing) dlg.classList.add('is-open'); });
+    }
+    function closeAll() {
+      if (!dlg.open || closing) return;
+      closing = true;
+      clearTimeout(openTimer);
+      dlg.classList.remove('is-open');
+      setTimeout(function () { if (dlg.open) dlg.close(); }, reduced ? 0 : 900);
+    }
+    btn.addEventListener('click', openAll);
+    dlg.querySelector('.doorway-close').addEventListener('click', closeAll);
+    dlg.addEventListener('click', function (e) { if (e.target === dlg) closeAll(); });
+    dlg.addEventListener('cancel', function (e) { e.preventDefault(); closeAll(); });
+    dlg.addEventListener('close', function () { html.classList.remove('door-lock'); closing = false; });
+  })).catch(function () { /* feed unreachable: the section simply stays hidden */ });
+})();
+</script>
 
 </body>
 </html>

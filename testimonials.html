@@ -1,89 +1,562 @@
 <!doctype html>
-<!-- Samskar main website: all testimonials, newest first, behind a door that opens when the page loads.
-     Save this file as testimonials.html next to index.html. The testimonials come from the Samskar admin app, so
-     nothing here needs editing when a new one is added. -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="/selfheal.js"></script>
 <title>What families say · Samskar</title>
+<meta name="description" content="Kind words from the families Samskar has celebrated with. Puja & rituals, photography, decoration and catering across Bangalore, Mysore and Shimoga.">
+<link rel="canonical" href="https://samskar.runs-on.dev/testimonials">
+<meta property="og:title" content="What families say · Samskar">
+<meta property="og:description" content="Kind words from the families Samskar has celebrated with.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://samskar.runs-on.dev/testimonials">
+<meta property="og:image" content="https://samskar.runs-on.dev/og-image.jpg">
+<meta property="og:site_name" content="Samskar">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#6E1F2B">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
+<link rel="apple-touch-icon" href="/icon-192.png">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Jost:wght@300;400;500;600&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Jost:wght@300;400;500;600&display=swap"></noscript>
 <style>
-  :root{--maroon:#6E1F2B;--maroon-dark:#4a111b;--gold:#C88D17;--cream:#FFFAF3;--ink:#2a2220;--muted:#7a6f66;--line:#eadfca}
-  *{box-sizing:border-box}
-  body{margin:0;background:var(--cream);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.6}
-  a{color:var(--maroon)}
-  header.top{background:var(--maroon);border-bottom:3px solid var(--gold);padding:.9rem 1.25rem}
-  header.top a{color:#fff;text-decoration:none;font-family:Georgia,"Times New Roman",serif;font-size:1.35rem;letter-spacing:.02em}
-  main{max-width:760px;margin:0 auto;padding:2.5rem 1.25rem 4rem}
-  h1{font-family:Georgia,"Times New Roman",serif;font-size:2.1rem;line-height:1.2;margin:0 0 .4rem;text-align:center;color:var(--maroon)}
-  .sub{text-align:center;color:var(--muted);margin:0 0 1.6rem}
-  .actions{text-align:center;margin:0 0 2.2rem}
-  .btn{display:inline-block;background:var(--maroon);color:#fff;text-decoration:none;font-weight:600;padding:.75rem 1.5rem;min-height:46px;border-radius:999px;transition:transform .12s ease}
-  .btn:active{transform:scale(.97)}
-  .count{text-align:center;color:var(--muted);font-size:.9rem;margin:0 0 1rem}
-  .card{background:#fff;border-radius:18px;padding:1.5rem 1.4rem;margin:0 0 1.1rem;box-shadow:0 1px 2px rgba(42,34,32,.06),0 6px 18px rgba(42,34,32,.07);opacity:0;transform:translateY(10px);animation:rise .5s ease forwards}
-  .card blockquote{margin:0;font-size:1.12rem;line-height:1.7}
-  .card blockquote::before{content:"\201C";display:block;font-family:Georgia,serif;font-size:2.8rem;line-height:.8;color:var(--gold);margin-bottom:.2rem}
-  .card .who{margin-top:.9rem;font-weight:650;color:var(--maroon)}
-  .card .when{display:block;font-weight:400;color:var(--muted);font-size:.9rem}
-  .state{text-align:center;color:var(--muted);padding:2rem 0}
-  .state button{font:inherit;background:none;border:1px solid var(--maroon);color:var(--maroon);padding:.5rem 1.2rem;border-radius:999px;cursor:pointer;margin-top:.6rem}
-  @keyframes rise{to{opacity:1;transform:none}}
-
-  /* ---- the door: two leaves in the Samskar colours swing open when the page loads ---- */
-  .door{position:fixed;inset:0;z-index:999;display:flex;perspective:1800px;overflow:hidden}
-  .glow{position:absolute;inset:0;background:radial-gradient(ellipse at center,#fff3d6 0%,#f4d98f 40%,#d9a63a 100%);transition:opacity 1.8s ease .5s}
-  .leaf{position:relative;width:50%;height:100%;z-index:1;backface-visibility:hidden;
-    background:linear-gradient(90deg,#4f1520 0%,var(--maroon) 35%,#7d2634 100%);
-    transition:transform 2.4s cubic-bezier(.6,0,.3,1);
-    box-shadow:inset 0 0 0 9px var(--maroon-dark),inset 0 0 0 11px var(--gold),inset 0 0 40px rgba(0,0,0,.35)}
-  .leaf.left{transform-origin:0 50%}
-  .leaf.right{transform-origin:100% 50%;background:linear-gradient(270deg,#4f1520 0%,var(--maroon) 35%,#7d2634 100%)}
-  .leaf::before,.leaf::after{content:"";position:absolute;left:16%;right:16%;border:2px solid var(--gold);border-radius:6px;
-    box-shadow:inset 0 0 0 6px rgba(0,0,0,.12),0 0 18px rgba(0,0,0,.25)}
-  .leaf::before{top:9%;height:38%}
-  .leaf::after{bottom:9%;height:38%}
-  .knob{position:absolute;top:60%;width:26px;height:26px;margin-top:-13px;border-radius:50%;z-index:2;
-    background:radial-gradient(circle at 35% 30%,#f7dc8b,var(--gold) 60%,#8f6410);box-shadow:0 2px 6px rgba(0,0,0,.45)}
-  .left .knob{right:12px} .right .knob{left:12px}
-  .sign{position:absolute;left:0;right:0;top:38%;transform:translateY(-50%);z-index:3;text-align:center;pointer-events:none;
-    font-family:Georgia,"Times New Roman",serif;font-size:clamp(2rem,9vw,3.4rem);letter-spacing:.14em;color:#f5d98a;text-shadow:0 2px 12px rgba(0,0,0,.55);transition:opacity .6s ease}
-  .sign small{display:block;font-size:.8rem;letter-spacing:.3em;text-transform:uppercase;margin-top:.4rem;opacity:.85}
-  .door.open .left{transform:rotateY(-110deg)}
-  .door.open .right{transform:rotateY(110deg)}
-  .door.open .glow{opacity:0}
-  .door.open .sign{opacity:0}
-  .door.gone{display:none}
-  @media (prefers-reduced-motion:reduce){.door{display:none}.card{animation:none;opacity:1;transform:none}}
+:root {
+  --maroon: #6E1F2B;
+  --maroon-deep: #4A141C;
+  --gold: #C79A3C;
+  --gold-light: #E7C77E;
+  --green: #2F4A3C;
+  --ivory: #FBF3E6;
+  --ivory-dark: #F1E3C9;
+  --ink: #2B1B12;
+  --ink-soft: #5A4A3D;
+  --maroon-rgb: 110,31,43;
+  --maroon-deep-rgb: 74,20,28;
+  --gold-rgb: 199,154,60;
+  --gold-light-rgb: 231,199,126;
+  --ivory-rgb: 251,243,230;
+  --ink-rgb: 43,27,18;
+  --line: rgba(var(--gold-rgb),.4);
+  --max: 1120px;
+  color-scheme: light;
+}
+* {
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  margin: 0;
+  background: var(--ivory);
+  color: var(--ink);
+  font: 400 16px/1.6 'Jost',sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+h1,h2,.serif {
+  font-family: 'Cormorant Garamond',serif;
+  color: var(--maroon-deep);
+  margin: 0;
+  font-weight: 600;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+img,svg {
+  display: block;
+  max-width: 100%;
+}
+.wrap {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 28px;
+}
+a:focus-visible, button:focus-visible {
+  outline: 3px solid var(--maroon);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+/* ---------- Header ---------- */
+header.top {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(var(--ivory-rgb),.92);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid var(--line);
+}
+header.top .wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 28px;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.monogram {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: var(--ivory);
+  border: 1.5px solid var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  overflow: hidden;
+}
+.monogram.lg {
+  width: 76px;
+  height: 76px;
+}
+.monogram img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+.brand-text .name {
+  font-size: 22px;
+  line-height: 1.1;
+  color: var(--maroon-deep);
+}
+.brand-text .tag {
+  font-size: 10.5px;
+  color: var(--ink-soft);
+  letter-spacing: .14em;
+  text-transform: lowercase;
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 22px;
+  border-radius: 999px;
+  font: 500 14.5px/1.2 'Jost',sans-serif;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+.btn-gold {
+  background: var(--maroon);
+  color: var(--gold-light);
+  border-color: var(--maroon);
+}
+.btn-gold:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(var(--maroon-deep-rgb),.25);
+}
+.btn-ghost {
+  background: transparent;
+  border-color: var(--maroon);
+  color: var(--maroon-deep);
+}
+.btn-ghost:hover {
+  background: var(--maroon);
+  color: var(--ivory);
+}
+.btn-sm {
+  padding: 9px 18px;
+}
+/* ---------- Page intro ---------- */
+main {
+  padding: 64px 0 40px;
+}
+.intro {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto;
+}
+.divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin-bottom: 22px;
+}
+.divider .line {
+  height: 1px;
+  width: 64px;
+  background: linear-gradient(90deg,transparent,var(--gold),transparent);
+}
+.divider svg {
+  width: 16px;
+  height: 16px;
+  fill: var(--gold);
+}
+h1 {
+  font-size: clamp(36px,6vw,56px);
+  line-height: 1.1;
+  text-wrap: balance;
+}
+.sub {
+  text-wrap: balance;
+  margin: 14px 0 26px;
+  color: var(--ink-soft);
+  font-size: 16.5px;
+}
+.count {
+  margin: 28px 0 22px;
+  text-align: center;
+  font-size: 13.5px;
+  letter-spacing: .04em;
+  color: var(--ink-soft);
+}
+/* ---------- Testimonial cards ---------- */
+#list {
+  max-width: 720px;
+  margin: 0 auto;
+}
+.card {
+  margin: 0 0 20px;
+  padding: 30px 28px 26px;
+  text-align: center;
+  background: var(--ivory-dark);
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  opacity: 0;
+  transform: translateY(12px);
+  animation: rise .6s ease forwards;
+  animation-delay: calc(var(--i, 0) * 70ms);
+}
+body:not(.opened) .card {
+  animation-play-state: paused;
+}
+.card blockquote {
+  margin: 0;
+  font-family: 'Cormorant Garamond',serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(20px,2.6vw,24px);
+  line-height: 1.5;
+  color: var(--maroon-deep);
+}
+.card blockquote::before {
+  content: "\201C";
+  content: "\201C" / "";
+  display: block;
+  height: 28px;
+  font-size: 56px;
+  line-height: .9;
+  font-style: normal;
+  color: var(--gold);
+}
+.card .who {
+  margin-top: 18px;
+  font-weight: 500;
+  font-size: 14.5px;
+  color: var(--maroon-deep);
+}
+.card .when {
+  display: block;
+  margin-top: 2px;
+  font-weight: 400;
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+.state {
+  text-align: center;
+  color: var(--ink-soft);
+  padding: 24px 0;
+}
+.state .btn {
+  margin-top: 10px;
+}
+@keyframes rise {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+/* ---------- Closing call to action ---------- */
+.share-cta {
+  max-width: 720px;
+  margin: 36px auto 0;
+  padding: 40px 28px;
+  text-align: center;
+  background: var(--maroon);
+  border-radius: 28px;
+}
+.share-cta h2 {
+  color: var(--gold-light);
+  font-size: clamp(26px,4vw,34px);
+}
+.share-cta p {
+  margin: 10px 0 24px;
+  color: rgba(var(--ivory-rgb),.82);
+  font-size: 15.5px;
+}
+.share-cta .btn-gold {
+  background: var(--gold);
+  color: var(--maroon-deep);
+  border-color: var(--gold);
+}
+.share-cta a:focus-visible {
+  outline-color: var(--gold-light);
+}
+/* ---------- Footer ---------- */
+footer {
+  padding: 52px 0 34px;
+}
+.footer-top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  text-align: center;
+}
+.footer-top .name {
+  font-size: 20px;
+}
+.footer-tag {
+  font-size: 14px;
+  color: var(--ink-soft);
+  font-family: 'Cormorant Garamond',serif;
+  font-style: italic;
+}
+.footer-social {
+  display: flex;
+  gap: 20px;
+  margin-top: 6px;
+}
+.footer-social a {
+  font-size: 13.5px;
+  color: var(--maroon-deep);
+  border-bottom: 1px solid var(--gold);
+  padding-bottom: 2px;
+}
+.footer-fine {
+  font-size: 12px;
+  color: var(--ink-soft);
+}
+/* ---------- The doors: open by themselves when the page loads ---------- */
+.door {
+  --mandala: min(100vw, 100vh);
+  --logo: calc(var(--mandala) * .3);
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  display: flex;
+  perspective: 1800px;
+  overflow: hidden;
+  animation: doorFailsafe 0s linear 7s forwards;
+}
+@supports (height: 1dvh) {
+  .door {
+    --mandala: min(100vw, 100dvh);
+  }
+}
+@keyframes doorFailsafe {
+  to {
+    visibility: hidden;
+    pointer-events: none;
+  }
+}
+.glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, var(--ivory) 0%, var(--gold-light) 45%, var(--gold) 100%);
+  transition: opacity 1.8s ease .5s;
+}
+.leaf {
+  position: relative;
+  z-index: 1;
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+  backface-visibility: hidden;
+  color: var(--gold-light);
+  transition: transform 2.2s cubic-bezier(.6,0,.3,1), opacity .6s ease 1.7s;
+}
+.leaf-left {
+  transform-origin: 0 50%;
+  background: radial-gradient(120% 80% at 100% 50%, rgba(var(--gold-light-rgb),.14), transparent 62%), linear-gradient(180deg, var(--maroon), var(--maroon-deep));
+  box-shadow: inset -14px 0 28px rgba(var(--maroon-deep-rgb),.55);
+}
+.leaf-right {
+  transform-origin: 100% 50%;
+  background: radial-gradient(120% 80% at 0% 50%, rgba(var(--gold-light-rgb),.14), transparent 62%), linear-gradient(180deg, var(--maroon), var(--maroon-deep));
+  box-shadow: inset 14px 0 28px rgba(var(--maroon-deep-rgb),.55);
+}
+.leaf::before, .leaf::after {
+  content: "";
+  position: absolute;
+  border: 1.5px solid rgba(var(--gold-light-rgb),.55);
+}
+.leaf::before {
+  inset: 14px;
+  border-radius: 8px;
+}
+.leaf::after {
+  inset: 22px;
+  border-width: .75px;
+  border-color: rgba(var(--gold-light-rgb),.3);
+  border-radius: 4px;
+}
+.leaf svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.leaf-logo {
+  position: absolute;
+  top: 50%;
+  width: var(--logo);
+  height: var(--logo);
+  margin-top: calc(var(--logo) / -2);
+  border-radius: 50%;
+  overflow: hidden;
+  background: var(--ivory);
+  border: 2px solid var(--gold);
+  box-shadow: 0 0 0 4px rgba(var(--maroon-deep-rgb),.6), 0 6px 18px rgba(var(--ink-rgb),.35);
+}
+.leaf-left .leaf-logo {
+  right: calc(var(--logo) / -2);
+}
+.leaf-right .leaf-logo {
+  left: calc(var(--logo) / -2);
+}
+.leaf-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+.door.open .leaf {
+  opacity: 0;
+}
+.door.open .leaf-left {
+  transform: rotateY(100deg);
+}
+.door.open .leaf-right {
+  transform: rotateY(-100deg);
+}
+.door.open .glow {
+  opacity: 0;
+}
+.door.gone {
+  display: none;
+}
+@media (max-width: 520px) {
+  .wrap, header.top .wrap {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  main {
+    padding-top: 44px;
+  }
+  .card {
+    padding: 26px 20px 22px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .door {
+    display: none;
+  }
+  .card {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
 </style>
-<noscript><style>.door{display:none}</style></noscript>
+<noscript><style>.door{display:none}.card{opacity:1;transform:none}</style></noscript>
 </head>
 <body>
+
+<svg style="display:none" aria-hidden="true">
+  <symbol id="icon-mandala" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><defs><path id="m-po" d="M100 22C108 33 108 43 100 54C92 43 92 33 100 22Z" stroke-width=".7" fill="currentColor" fill-opacity=".14"/><path id="m-pi" d="M100 36C113 50 113 64 100 78C87 64 87 50 100 36Z" stroke-width=".8" fill="currentColor" fill-opacity=".16"/><circle id="m-dot" cx="100" cy="18.5" r=".95" fill="currentColor" stroke="none"/><path id="m-ray" d="M100 40L103 50L100 54L97 50Z" stroke-width=".6" fill="currentColor" fill-opacity=".25"/></defs><circle cx="100" cy="100" r="88" stroke-width="1.1"/><circle cx="100" cy="100" r="84.5" stroke-width=".4"/><use href="#m-dot" transform="rotate(0 100 100)"/><use href="#m-dot" transform="rotate(7.5 100 100)"/><use href="#m-dot" transform="rotate(15 100 100)"/><use href="#m-dot" transform="rotate(22.5 100 100)"/><use href="#m-dot" transform="rotate(30 100 100)"/><use href="#m-dot" transform="rotate(37.5 100 100)"/><use href="#m-dot" transform="rotate(45 100 100)"/><use href="#m-dot" transform="rotate(52.5 100 100)"/><use href="#m-dot" transform="rotate(60 100 100)"/><use href="#m-dot" transform="rotate(67.5 100 100)"/><use href="#m-dot" transform="rotate(75 100 100)"/><use href="#m-dot" transform="rotate(82.5 100 100)"/><use href="#m-dot" transform="rotate(90 100 100)"/><use href="#m-dot" transform="rotate(97.5 100 100)"/><use href="#m-dot" transform="rotate(105 100 100)"/><use href="#m-dot" transform="rotate(112.5 100 100)"/><use href="#m-dot" transform="rotate(120 100 100)"/><use href="#m-dot" transform="rotate(127.5 100 100)"/><use href="#m-dot" transform="rotate(135 100 100)"/><use href="#m-dot" transform="rotate(142.5 100 100)"/><use href="#m-dot" transform="rotate(150 100 100)"/><use href="#m-dot" transform="rotate(157.5 100 100)"/><use href="#m-dot" transform="rotate(165 100 100)"/><use href="#m-dot" transform="rotate(172.5 100 100)"/><use href="#m-dot" transform="rotate(180 100 100)"/><use href="#m-dot" transform="rotate(187.5 100 100)"/><use href="#m-dot" transform="rotate(195 100 100)"/><use href="#m-dot" transform="rotate(202.5 100 100)"/><use href="#m-dot" transform="rotate(210 100 100)"/><use href="#m-dot" transform="rotate(217.5 100 100)"/><use href="#m-dot" transform="rotate(225 100 100)"/><use href="#m-dot" transform="rotate(232.5 100 100)"/><use href="#m-dot" transform="rotate(240 100 100)"/><use href="#m-dot" transform="rotate(247.5 100 100)"/><use href="#m-dot" transform="rotate(255 100 100)"/><use href="#m-dot" transform="rotate(262.5 100 100)"/><use href="#m-dot" transform="rotate(270 100 100)"/><use href="#m-dot" transform="rotate(277.5 100 100)"/><use href="#m-dot" transform="rotate(285 100 100)"/><use href="#m-dot" transform="rotate(292.5 100 100)"/><use href="#m-dot" transform="rotate(300 100 100)"/><use href="#m-dot" transform="rotate(307.5 100 100)"/><use href="#m-dot" transform="rotate(315 100 100)"/><use href="#m-dot" transform="rotate(322.5 100 100)"/><use href="#m-dot" transform="rotate(330 100 100)"/><use href="#m-dot" transform="rotate(337.5 100 100)"/><use href="#m-dot" transform="rotate(345 100 100)"/><use href="#m-dot" transform="rotate(352.5 100 100)"/><use href="#m-po" transform="rotate(0 100 100)"/><use href="#m-po" transform="rotate(15 100 100)"/><use href="#m-po" transform="rotate(30 100 100)"/><use href="#m-po" transform="rotate(45 100 100)"/><use href="#m-po" transform="rotate(60 100 100)"/><use href="#m-po" transform="rotate(75 100 100)"/><use href="#m-po" transform="rotate(90 100 100)"/><use href="#m-po" transform="rotate(105 100 100)"/><use href="#m-po" transform="rotate(120 100 100)"/><use href="#m-po" transform="rotate(135 100 100)"/><use href="#m-po" transform="rotate(150 100 100)"/><use href="#m-po" transform="rotate(165 100 100)"/><use href="#m-po" transform="rotate(180 100 100)"/><use href="#m-po" transform="rotate(195 100 100)"/><use href="#m-po" transform="rotate(210 100 100)"/><use href="#m-po" transform="rotate(225 100 100)"/><use href="#m-po" transform="rotate(240 100 100)"/><use href="#m-po" transform="rotate(255 100 100)"/><use href="#m-po" transform="rotate(270 100 100)"/><use href="#m-po" transform="rotate(285 100 100)"/><use href="#m-po" transform="rotate(300 100 100)"/><use href="#m-po" transform="rotate(315 100 100)"/><use href="#m-po" transform="rotate(330 100 100)"/><use href="#m-po" transform="rotate(345 100 100)"/><use href="#m-pi" transform="rotate(15 100 100)"/><use href="#m-pi" transform="rotate(45 100 100)"/><use href="#m-pi" transform="rotate(75 100 100)"/><use href="#m-pi" transform="rotate(105 100 100)"/><use href="#m-pi" transform="rotate(135 100 100)"/><use href="#m-pi" transform="rotate(165 100 100)"/><use href="#m-pi" transform="rotate(195 100 100)"/><use href="#m-pi" transform="rotate(225 100 100)"/><use href="#m-pi" transform="rotate(255 100 100)"/><use href="#m-pi" transform="rotate(285 100 100)"/><use href="#m-pi" transform="rotate(315 100 100)"/><use href="#m-pi" transform="rotate(345 100 100)"/><circle cx="100" cy="100" r="40" stroke-width=".8"/><circle cx="100" cy="100" r="36.5" stroke-width=".5" stroke-dasharray="1.2 2.4"/><use href="#m-ray" transform="rotate(0 100 100)"/><use href="#m-ray" transform="rotate(22.5 100 100)"/><use href="#m-ray" transform="rotate(45 100 100)"/><use href="#m-ray" transform="rotate(67.5 100 100)"/><use href="#m-ray" transform="rotate(90 100 100)"/><use href="#m-ray" transform="rotate(112.5 100 100)"/><use href="#m-ray" transform="rotate(135 100 100)"/><use href="#m-ray" transform="rotate(157.5 100 100)"/><use href="#m-ray" transform="rotate(180 100 100)"/><use href="#m-ray" transform="rotate(202.5 100 100)"/><use href="#m-ray" transform="rotate(225 100 100)"/><use href="#m-ray" transform="rotate(247.5 100 100)"/><use href="#m-ray" transform="rotate(270 100 100)"/><use href="#m-ray" transform="rotate(292.5 100 100)"/><use href="#m-ray" transform="rotate(315 100 100)"/><use href="#m-ray" transform="rotate(337.5 100 100)"/><circle cx="100" cy="100" r="34" stroke-width="1"/></symbol>
+</svg>
+
 <div class="door" id="door" aria-hidden="true">
   <div class="glow"></div>
-  <div class="leaf left"><span class="knob"></span></div>
-  <div class="leaf right"><span class="knob"></span></div>
-  <div class="sign">SAMSKAR<small>Carrying traditions with trends</small></div>
+  <div class="leaf leaf-left">
+    <svg viewBox="0 0 100 200" preserveAspectRatio="xMaxYMid meet"><use href="#icon-mandala" x="0" y="0" width="200" height="200"/></svg>
+    <div class="leaf-logo"><img src="images/logo.webp" alt="" width="211" height="211"></div>
+  </div>
+  <div class="leaf leaf-right">
+    <svg viewBox="100 0 100 200" preserveAspectRatio="xMinYMid meet"><use href="#icon-mandala" x="0" y="0" width="200" height="200"/></svg>
+    <div class="leaf-logo"><img src="images/logo.webp" alt="" width="211" height="211"></div>
+  </div>
 </div>
 
-<header class="top"><a href="/">Samskar</a></header>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="/" aria-label="Samskar home">
+      <div class="monogram"><img width="211" height="211" src="images/logo.webp" alt="Samskar emblem"></div>
+      <div class="brand-text">
+        <div class="name serif">Samskar</div>
+        <div class="tag">carrying traditions with trends</div>
+      </div>
+    </a>
+    <a class="btn btn-ghost btn-sm" href="/">Home</a>
+  </div>
+</header>
+
 <main>
-  <h1>What families say</h1>
-  <p class="sub">Kind words from celebrations we've been part of.</p>
-  <p class="actions"><a class="btn" href="https://samskar-adminpage.vercel.app/share/">Share your experience</a></p>
-  <p class="count" id="count" hidden></p>
-  <div id="list" aria-live="polite"></div>
-  <p class="state" id="state">Loading testimonials&hellip;</p>
+  <div class="wrap">
+    <div class="intro">
+      <div class="divider">
+        <span class="line"></span>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.4 7.6L22 12l-7.6 2.4L12 22l-2.4-7.6L2 12l7.6-2.4z"/></svg>
+        <span class="line"></span>
+      </div>
+      <h1>What families say</h1>
+      <p class="sub">Kind words from celebrations we've been part of.</p>
+      <a class="btn btn-gold" href="https://samskar-adminpage.vercel.app/share/">Share your experience</a>
+    </div>
+
+    <p class="count" id="count" hidden></p>
+    <div id="list" aria-live="polite"></div>
+    <p class="state" id="state">Loading testimonials&hellip;</p>
+
+    <div class="share-cta">
+      <h2>Celebrated with us?</h2>
+      <p>We'd love to hear how it felt, in your own words.</p>
+      <a class="btn btn-gold" href="https://samskar-adminpage.vercel.app/share/">Share your experience</a>
+    </div>
+  </div>
 </main>
+
+<footer>
+  <div class="wrap footer-top">
+    <div class="monogram lg"><img width="211" height="211" src="images/logo.webp" alt="Samskar emblem" loading="lazy"></div>
+    <div class="name serif">Samskar</div>
+    <div class="footer-tag">Celebrate Faith. Create Memories.</div>
+    <div class="footer-social">
+      <a href="/">Home</a>
+      <a href="https://instagram.com/samskar.official" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://wa.me/918088839040" target="_blank" rel="noopener">WhatsApp</a>
+    </div>
+    <div class="footer-fine">© 2026 Samskar. Carrying traditions with trends — Bangalore · Mysore · Shimoga.</div>
+  </div>
+</footer>
 
 <script>
 (function () {
+  /* Testimonials come from the Samskar admin app (already newest first), so nothing here needs editing
+     when a new one is added. */
   var FEED = 'https://samskar-adminpage.vercel.app/testimonials/data.json?limit=200';
   var list = document.getElementById('list'), state = document.getElementById('state'), count = document.getElementById('count');
+  var door = document.getElementById('door');
+  var reduced = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!door || reduced) { if (door) door.remove(); document.body.classList.add('opened'); }
 
   function load() {
-    state.hidden = false; state.textContent = 'Loading testimonials\u2026';
+    state.hidden = false;
+    state.textContent = 'Loading testimonials\u2026';
     var ctrl = window.AbortController ? new AbortController() : null;
     var guard = setTimeout(function () { if (ctrl) ctrl.abort(); }, 10000);
     fetch(FEED, ctrl ? { signal: ctrl.signal } : undefined)
@@ -92,38 +565,53 @@
       .catch(function () {
         clearTimeout(guard);
         state.textContent = "We couldn't load the testimonials just now. ";
-        var b = document.createElement('button'); b.type = 'button'; b.textContent = 'Try again'; b.onclick = load;
-        state.appendChild(document.createElement('br')); state.appendChild(b);
+        var b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'btn btn-ghost btn-sm';
+        b.textContent = 'Try again';
+        b.addEventListener('click', load);
+        state.appendChild(document.createElement('br'));
+        state.appendChild(b);
       });
   }
 
-  function show(items) {              // the feed is already newest first
+  function show(items) {
     list.textContent = '';
     if (!items.length) { state.textContent = 'Testimonials will appear here soon.'; return; }
     state.hidden = true;
-    count.hidden = false; count.textContent = items.length + (items.length === 1 ? ' testimonial' : ' testimonials') + ', newest first';
+    count.hidden = false;
+    count.textContent = items.length + (items.length === 1 ? ' testimonial' : ' testimonials') + ', newest first';
     items.forEach(function (t, i) {
       var card = document.createElement('article'), q = document.createElement('blockquote'), who = document.createElement('div');
-      card.className = 'card'; card.style.animationDelay = Math.min(i, 12) * 70 + 'ms';
+      card.className = 'card';
+      card.style.setProperty('--i', Math.min(i, 12));
       q.textContent = t.quote;                                  // textContent: never inserted as HTML
-      who.className = 'who'; who.textContent = t.author;
-      if (t.event_day) { var w = document.createElement('span'); w.className = 'when'; w.textContent = t.event_day; who.appendChild(w); }
+      who.className = 'who';
+      who.textContent = t.author;
+      if (t.event_day) {                                        // e.g. "Sunday, 12 October 2025"
+        var w = document.createElement('span');
+        w.className = 'when';
+        w.textContent = t.event_day;
+        who.appendChild(w);
+      }
       card.appendChild(q); card.appendChild(who); list.appendChild(card);
     });
   }
   load();
 
-  // the door: opens by itself shortly after the page loads; tap to open it sooner
-  var door = document.getElementById('door');
-  if (!door) return;
-  if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) { door.remove(); return; }
+  /* the doors: open by themselves shortly after the page loads; tap or press a key to open sooner */
+  if (!door || reduced) return;
   var opened = false;
   function open() {
-    if (opened) return; opened = true; door.classList.add('open');
+    if (opened) return;
+    opened = true;
+    door.classList.add('open');
+    document.body.classList.add('opened');
     setTimeout(function () { door.classList.add('gone'); }, 3000);
   }
-  door.addEventListener('click', open); document.addEventListener('keydown', open);
-  setTimeout(open, 700);
+  door.addEventListener('click', open);
+  document.addEventListener('keydown', open);
+  setTimeout(open, 1000);
 })();
 </script>
 </body>
