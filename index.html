@@ -40,7 +40,18 @@
   --ivory-dark: #F1E3C9;
   --ink: #2B1B12;
   --ink-soft: #5A4A3D;
+  /* RGB channels of the palette, so translucent tints stay in sync with it */
+  --maroon-rgb: 110,31,43;
+  --maroon-deep-rgb: 74,20,28;
+  --gold-rgb: 199,154,60;
+  --gold-light-rgb: 231,199,126;
+  --ivory-rgb: 251,243,230;
+  --ink-rgb: 43,27,18;
+  /* Semantic tokens */
+  --line: rgba(var(--gold-rgb),.4);
+  --line-strong: rgba(var(--gold-rgb),.5);
   --max: 1120px;
+  color-scheme: light;
 }
 * {
   box-sizing: border-box;
@@ -84,7 +95,7 @@ img,svg {
   }
 }
 a:focus-visible, summary:focus-visible {
-  outline: 3px solid var(--gold);
+  outline: 3px solid var(--maroon);
   outline-offset: 3px;
   border-radius: 6px;
 }
@@ -116,9 +127,9 @@ header {
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(251,243,230,0.92);
+  background: rgba(var(--ivory-rgb),.92);
   backdrop-filter: blur(6px);
-  border-bottom: 1px solid rgba(199,154,60,0.35);
+  border-bottom: 1px solid var(--line);
 }
 nav.wrap {
   display: flex;
@@ -202,7 +213,7 @@ nav.wrap {
 }
 .btn-gold:hover {
   transform: translateY(-1px);
-  box-shadow: 0 8px 20px rgba(74,20,28,0.25);
+  box-shadow: 0 8px 20px rgba(var(--maroon-deep-rgb),.25);
 }
 .btn-ghost {
   border-color: var(--maroon);
@@ -223,12 +234,9 @@ nav.wrap {
 /* ---------- Hero ---------- */
 .hero {
   position: relative;
-  padding: 72px 0 90px;
+  padding: 72px 0 40px;
   overflow: hidden;
-  background: linear-gradient(rgba(251,243,230,0.86), rgba(251,243,230,0.94));
-  background-size: cover;
-  background-position: center top;
-  background-repeat: no-repeat;
+  background: var(--ivory);
 }
 .hero-panel {
   width: 220px;
@@ -237,7 +245,7 @@ nav.wrap {
   border-radius: 50%;
   overflow: hidden;
   border: 1.5px solid var(--gold);
-  box-shadow: 0 14px 34px rgba(74,20,28,0.18);
+  box-shadow: 0 14px 34px rgba(var(--maroon-deep-rgb),.18);
   opacity: 0;
   animation: rise .7s ease forwards;
 }
@@ -258,6 +266,7 @@ nav.wrap {
   font-size: clamp(38px,6vw,64px);
   line-height: 1.08;
   letter-spacing: .002em;
+  text-wrap: balance;
   opacity: 0;
   animation: rise .7s ease forwards;
   animation-delay: .08s;
@@ -299,11 +308,14 @@ nav.wrap {
   font-weight: 500;
 }
 @keyframes rise {
-  from{opacity:0;
-  transform: translateY(14px);
-  } to{opacity:1;
-  transform: translateY(0);
-  };
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 /* ---------- Intro strip ---------- */
 .intro {
@@ -344,12 +356,12 @@ section {
 /* ---------- Services (arch cards) ---------- */
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(2,1fr);
+  grid-template-columns: repeat(2,minmax(0,1fr));
   gap: 26px;
 }
 @media (min-width:700px) {
   .services-grid {
-    grid-template-columns: repeat(3,1fr);
+    grid-template-columns: repeat(3,minmax(0,1fr));
   }
 }
 .service {
@@ -357,7 +369,7 @@ section {
   flex-direction: column;
   align-items: center;
   background: var(--ivory);
-  border: 1px solid rgba(199,154,60,0.4);
+  border: 1px solid var(--line);
   border-radius: 110px 110px 14px 14px;
   padding: 38px 20px 24px;
   text-align: center;
@@ -366,7 +378,7 @@ section {
 }
 .service:hover {
   transform: translateY(-4px);
-  box-shadow: 0 14px 28px rgba(110,31,43,0.14);
+  box-shadow: 0 14px 28px rgba(var(--maroon-rgb),.14);
   border-color: var(--gold);
 }
 .service:active {
@@ -420,9 +432,10 @@ section {
   gap: 6px;
   margin-top: 16px;
   padding-top: 14px;
-  border-top: 1px dashed rgba(199,154,60,0.5);
+  border-top: 1px dashed var(--line-strong);
   width: 100%;
   justify-content: center;
+  text-align: center;
   font-size: 12px;
   letter-spacing: .03em;
   color: var(--green);
@@ -457,7 +470,7 @@ section {
 .why-list {
   max-width: 760px;
   margin: 0 auto;
-  border-top: 1px solid rgba(199,154,60,0.4);
+  border-top: 1px solid var(--line);
 }
 .why-item {
   display: grid;
@@ -465,7 +478,7 @@ section {
   gap: 18px;
   align-items: flex-start;
   padding: 22px 4px;
-  border-bottom: 1px solid rgba(199,154,60,0.4);
+  border-bottom: 1px solid var(--line);
 }
 .why-item .icon {
   width: 40px;
@@ -527,7 +540,7 @@ section {
   margin: 0 auto;
 }
 .faq-item {
-  border-bottom: 1px solid rgba(199,154,60,0.4);
+  border-bottom: 1px solid var(--line);
   padding: 18px 4px;
 }
 .faq-item summary {
@@ -544,7 +557,7 @@ section {
 .faq-item summary::after {
   content: "+";
   float: right;
-  color: var(--gold);
+  color: var(--maroon);
   font-size: 20px;
 }
 .faq-item[open] summary::after {
@@ -570,7 +583,7 @@ section {
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 20% 20%, rgba(231,199,126,0.16), transparent 45%),radial-gradient(circle at 85% 80%, rgba(231,199,126,0.14), transparent 45%);
+  background: radial-gradient(circle at 20% 20%, rgba(var(--gold-light-rgb),.16), transparent 45%),radial-gradient(circle at 85% 80%, rgba(var(--gold-light-rgb),.14), transparent 45%);
 }
 .cta-inner {
   position: relative;
@@ -581,7 +594,7 @@ section {
   font-size: clamp(28px,4vw,38px);
 }
 .cta p {
-  color: rgba(251,243,230,0.82);
+  color: rgba(var(--ivory-rgb),.82);
   margin-top: 12px;
   font-size: 15.5px;
 }
@@ -604,6 +617,9 @@ section {
 .cta .btn-ghost:hover {
   background: var(--gold-light);
   color: var(--maroon-deep);
+}
+.cta a:focus-visible {
+  outline-color: var(--gold-light);
 }
 /* ---------- Footer ---------- */
 footer {
@@ -651,16 +667,16 @@ footer {
   height: 56px;
   border-radius: 50%;
   background: var(--green);
-  color: #fff;
+  color: var(--ivory);
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 10px 24px rgba(0,0,0,0.22);
+  box-shadow: 0 10px 24px rgba(var(--ink-rgb),.22);
 }
 .float-wa svg {
   width: 26px;
   height: 26px;
-  stroke: #fff;
+  stroke: var(--ivory);
   fill: none;
 }
 @media (min-width:900px) {
@@ -718,7 +734,7 @@ footer {
 </header>
 
 <main>
-<section class="hero" style="background:linear-gradient(rgba(251,243,230,0.86), rgba(251,243,230,0.94)), url(images/photo-2.webp);background-size:cover;background-position:center top;background-repeat:no-repeat;">
+<section class="hero">
 
   <div class="wrap hero-inner">
     <div class="hero-panel"><img src="images/logo.webp" alt="Samskar"></div>
@@ -762,7 +778,7 @@ footer {
 
       <a class="service" href="https://wa.me/918088839040?text=Hi%20Samskar%2C%20I%27d%20like%20to%20know%20more%20about%20Prashne%20(traditional%20query%20reading)." target="_blank" rel="noopener">
         <div class="icon">
-          <svg viewBox="0 0 24 24" stroke-width="1.6"><path d="M9 9a3 3 0 1 1 4 2.8c-.8.4-1 .9-1 1.7"/><circle cx="12" cy="17" r=".6" fill="#E7C77E"/><circle cx="12" cy="12" r="9"/></svg>
+          <svg viewBox="0 0 24 24" stroke-width="1.6"><path d="M9 9a3 3 0 1 1 4 2.8c-.8.4-1 .9-1 1.7"/><circle cx="12" cy="17" r=".6" style="fill:var(--gold-light)"/><circle cx="12" cy="12" r="9"/></svg>
         </div>
         <h3>Prashne <span class="hint">(query reading)</span></h3>
         <p>Traditional query readings, offered with the same devotion and care as our rituals.</p>
