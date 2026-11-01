@@ -232,6 +232,7 @@ body:not(.opened) .card {
 }
 .card blockquote {
   margin: 0;
+  white-space: pre-line;
   font-family: 'Cormorant Garamond',serif;
   font-style: italic;
   font-weight: 500;
@@ -339,19 +340,22 @@ footer {
 }
 /* ---------- The doors: open by themselves when the page loads ---------- */
 .door {
-  --mandala: min(100vw, 100vh);
+  --stage-w: min(94vw, 600px);
+  --stage-h: min(calc(100vh - 120px), 680px);
+  --mandala: min(var(--stage-w), var(--stage-h));
   --logo: calc(var(--mandala) * .3);
   position: fixed;
   inset: 0;
   z-index: 999;
   display: flex;
-  perspective: 1800px;
-  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(ellipse at center, rgba(var(--maroon-rgb),.6), transparent 72%), var(--maroon-deep);
   animation: doorFailsafe 0s linear 7s forwards;
 }
 @supports (height: 1dvh) {
   .door {
-    --mandala: min(100vw, 100dvh);
+    --stage-h: min(calc(100dvh - 120px), 680px);
   }
 }
 @keyframes doorFailsafe {
@@ -360,11 +364,23 @@ footer {
     pointer-events: none;
   }
 }
+.stage {
+  position: relative;
+  display: flex;
+  width: var(--stage-w);
+  height: var(--stage-h);
+  border-radius: 22px;
+  border: 2px solid var(--gold);
+  outline: 1px solid rgba(var(--gold-light-rgb),.4);
+  outline-offset: 7px;
+  box-shadow: 0 24px 60px rgba(var(--ink-rgb),.45);
+  overflow: hidden;
+  perspective: 1700px;
+}
 .glow {
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse at center, var(--ivory) 0%, var(--gold-light) 45%, var(--gold) 100%);
-  transition: opacity 1.8s ease .5s;
+  background: radial-gradient(ellipse at center, var(--ivory) 0%, var(--gold-light) 50%, var(--gold) 100%);
 }
 .leaf {
   position: relative;
@@ -386,20 +402,12 @@ footer {
   background: radial-gradient(120% 80% at 0% 50%, rgba(var(--gold-light-rgb),.14), transparent 62%), linear-gradient(180deg, var(--maroon), var(--maroon-deep));
   box-shadow: inset 14px 0 28px rgba(var(--maroon-deep-rgb),.55);
 }
-.leaf::before, .leaf::after {
+.leaf::before {
   content: "";
   position: absolute;
-  border: 1.5px solid rgba(var(--gold-light-rgb),.55);
-}
-.leaf::before {
   inset: 14px;
-  border-radius: 8px;
-}
-.leaf::after {
-  inset: 22px;
-  border-width: .75px;
-  border-color: rgba(var(--gold-light-rgb),.3);
-  border-radius: 4px;
+  border: 1.5px solid rgba(var(--gold-light-rgb),.55);
+  border-radius: 10px;
 }
 .leaf svg {
   position: absolute;
@@ -431,6 +439,15 @@ footer {
   object-fit: cover;
   object-position: center;
 }
+/* opening: the leaves swing in, then the whole box softly fades away into the page */
+.door.open {
+  opacity: 0;
+  transition: opacity 1s ease 2.1s;
+}
+.door.open .stage {
+  transform: scale(1.1);
+  transition: transform 3.2s ease;
+}
 .door.open .leaf {
   opacity: 0;
 }
@@ -439,9 +456,6 @@ footer {
 }
 .door.open .leaf-right {
   transform: rotateY(-100deg);
-}
-.door.open .glow {
-  opacity: 0;
 }
 .door.gone {
   display: none;
@@ -481,14 +495,16 @@ footer {
 </svg>
 
 <div class="door" id="door" aria-hidden="true">
-  <div class="glow"></div>
-  <div class="leaf leaf-left">
-    <svg viewBox="0 0 100 200" preserveAspectRatio="xMaxYMid meet"><use href="#icon-mandala" x="0" y="0" width="200" height="200"/></svg>
-    <div class="leaf-logo"><img src="images/logo.webp" alt="" width="211" height="211"></div>
-  </div>
-  <div class="leaf leaf-right">
-    <svg viewBox="100 0 100 200" preserveAspectRatio="xMinYMid meet"><use href="#icon-mandala" x="0" y="0" width="200" height="200"/></svg>
-    <div class="leaf-logo"><img src="images/logo.webp" alt="" width="211" height="211"></div>
+  <div class="stage">
+    <div class="glow"></div>
+    <div class="leaf leaf-left">
+      <svg viewBox="0 0 100 200" preserveAspectRatio="xMaxYMid meet"><use href="#icon-mandala" x="0" y="0" width="200" height="200"/></svg>
+      <div class="leaf-logo"><img src="images/logo.webp" alt="" width="211" height="211"></div>
+    </div>
+    <div class="leaf leaf-right">
+      <svg viewBox="100 0 100 200" preserveAspectRatio="xMinYMid meet"><use href="#icon-mandala" x="0" y="0" width="200" height="200"/></svg>
+      <div class="leaf-logo"><img src="images/logo.webp" alt="" width="211" height="211"></div>
+    </div>
   </div>
 </div>
 
@@ -606,8 +622,8 @@ footer {
     if (opened) return;
     opened = true;
     door.classList.add('open');
-    document.body.classList.add('opened');
-    setTimeout(function () { door.classList.add('gone'); }, 3000);
+    setTimeout(function () { document.body.classList.add('opened'); }, 1900);   // cards rise as the box fades away
+    setTimeout(function () { door.classList.add('gone'); }, 3400);
   }
   door.addEventListener('click', open);
   document.addEventListener('keydown', open);
