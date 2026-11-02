@@ -20,7 +20,7 @@
 <meta name="twitter:image" content="https://samskar.runs-on.dev/og-image.jpg">
 <link rel="canonical" href="https://samskar.runs-on.dev/">
 <title>Samskar — Carrying Traditions with Trends</title>
-<meta name="theme-color" content="#6E1F2B">
+<meta name="theme-color" content="#6A0B0B">
 <link rel="manifest" href="/site.webmanifest">
 <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
 <link rel="apple-touch-icon" href="/icon-192.png">
@@ -31,22 +31,28 @@
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Jost:wght@300;400;500;600&display=swap"></noscript>
 <style>
 :root {
-  --maroon: #6E1F2B;
-  --maroon-deep: #4A141C;
-  --gold: #C79A3C;
-  --gold-light: #E7C77E;
-  --green: #2F4A3C;
+  --maroon: #6A0B0B;
+  --maroon-deep: #450707;
+  --gold: #BF934C;
+  --gold-light: #DFBB82;
+  --green: #15401C;
   --ivory: #FBF3E6;
   --ivory-dark: #F1E3C9;
-  --ink: #2B1B12;
+  --ink: #1E1513;
   --ink-soft: #5A4A3D;
+  /* Colour roles
+     ivory ........ page base            ivory-dark ... alternate bands, soft cards
+     maroon-deep .. headings, dark band  maroon ....... primary buttons, accents
+     gold / light . ornaments and lines; gold-light = text on dark maroon
+     green ........ WhatsApp actions only
+     ink / soft ... body text */
   /* RGB channels of the palette, so translucent tints stay in sync with it */
-  --maroon-rgb: 110,31,43;
-  --maroon-deep-rgb: 74,20,28;
-  --gold-rgb: 199,154,60;
-  --gold-light-rgb: 231,199,126;
+  --maroon-rgb: 106,11,11;
+  --maroon-deep-rgb: 69,7,7;
+  --gold-rgb: 191,147,76;
+  --gold-light-rgb: 223,187,130;
   --ivory-rgb: 251,243,230;
-  --ink-rgb: 43,27,18;
+  --ink-rgb: 30,21,19;
   /* Semantic tokens */
   --line: rgba(var(--gold-rgb),.4);
   --line-strong: rgba(var(--gold-rgb),.5);
@@ -65,6 +71,14 @@
 }
 html {
   scroll-behavior: smooth;
+}
+html {
+  accent-color: var(--maroon);
+  scrollbar-color: var(--gold) var(--ivory-dark);
+}
+::selection {
+  background: var(--gold-light);
+  color: var(--maroon-deep);
 }
 body {
   margin: 0;
@@ -188,16 +202,17 @@ nav.wrap {
 .nav-links {
   display: none;
   align-items: center;
-  gap: 28px;
+  gap: clamp(18px, 2.2vw, 28px);
 }
 .nav-links a {
   font-size: 14.5px;
   color: var(--ink-soft);
+  white-space: nowrap;
 }
 .nav-links a:hover {
   color: var(--maroon);
 }
-@media (min-width:900px) {
+@media (min-width:960px) {
   .nav-links {
     display: flex;
   }
@@ -223,12 +238,13 @@ nav.wrap {
   box-shadow: 0 8px 20px rgba(var(--maroon-deep-rgb),.25);
 }
 .btn-ghost {
-  border-color: var(--maroon);
+  background: var(--ivory);
+  border-color: transparent;
   color: var(--maroon-deep);
+  box-shadow: var(--neo-raised-sm);
 }
 .btn-ghost:hover {
-  background: var(--maroon);
-  color: var(--ivory);
+  box-shadow: var(--neo-inset);
 }
 .nav-cta {
   display: none;
@@ -243,7 +259,7 @@ nav.wrap {
   position: relative;
   padding: 72px 0 40px;
   overflow: hidden;
-  background: var(--ivory);
+  background: radial-gradient(ellipse 55% 45% at 50% 22%, rgba(var(--gold-light-rgb),.32), transparent 72%), var(--ivory);
 }
 .hero-panel {
   width: 220px;
@@ -349,6 +365,14 @@ nav.wrap {
 .section-head h2 {
   font-size: clamp(30px,4vw,42px);
 }
+.section-head h2::after {
+  content: "";
+  display: block;
+  width: 64px;
+  height: 2px;
+  margin: 14px auto 0;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
 .section-head p {
   color: var(--ink-soft);
   font-size: 15.5px;
@@ -359,6 +383,36 @@ section {
 }
 .band {
   background: var(--ivory-dark);
+}
+/* ---------- Deep maroon feature band ---------- */
+.band-dark {
+  background: radial-gradient(ellipse 70% 60% at 50% 0%, rgba(var(--gold-light-rgb),.14), transparent 70%), linear-gradient(180deg, var(--maroon) 0%, var(--maroon-deep) 100%);
+}
+.band-dark h2 {
+  color: var(--gold-light);
+}
+.band-dark .section-head h2::after {
+  background: linear-gradient(90deg, transparent, var(--gold-light), transparent);
+}
+.band-dark .section-head p {
+  color: rgba(var(--ivory-rgb),.82);
+}
+.band-dark .why-list,
+.band-dark .why-item {
+  border-color: rgba(var(--gold-light-rgb),.28);
+}
+.band-dark .why-item .icon {
+  border-color: var(--gold-light);
+  background: rgba(var(--gold-light-rgb),.1);
+}
+.band-dark .why-item .icon svg {
+  stroke: var(--gold-light);
+}
+.band-dark .why-item h3 {
+  color: var(--ivory);
+}
+.band-dark .why-item p {
+  color: rgba(var(--ivory-rgb),.8);
 }
 /* ---------- Services (rounded cards) ---------- */
 .services-grid {
@@ -828,9 +882,10 @@ html.door-lock {
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 12px 22px;
+  padding: 12px 24px;
   border-radius: 999px;
-  border: 1px solid var(--gold);
+  background: var(--ivory-dark);
+  box-shadow: var(--neo-raised-sm);
   color: var(--maroon-deep);
   font-size: 15px;
 }
@@ -846,8 +901,18 @@ html.door-lock {
   margin: 0 auto;
 }
 .faq-item {
-  border-bottom: 1px solid var(--line);
-  padding: 18px 4px;
+  margin-bottom: 18px;
+  padding: 18px 22px;
+  background: var(--ivory);
+  border-radius: 16px;
+  box-shadow: var(--neo-raised-sm);
+  transition: box-shadow .2s ease;
+}
+.faq-item:last-child {
+  margin-bottom: 0;
+}
+.faq-item[open] {
+  box-shadow: var(--neo-inset);
 }
 .faq-item summary {
   cursor: pointer;
@@ -917,8 +982,10 @@ html.door-lock {
   border-color: var(--gold);
 }
 .cta .btn-ghost {
+  background: transparent;
   border-color: var(--gold-light);
   color: var(--gold-light);
+  box-shadow: none;
 }
 .cta .btn-ghost:hover {
   background: var(--gold-light);
@@ -932,6 +999,8 @@ footer {
   padding: 52px 0 34px;
   position: relative;
   overflow: hidden;
+  background: var(--ivory-dark);
+  border-top: 1px solid var(--line);
 }
 .footer-top {
   display: flex;
@@ -1032,6 +1101,7 @@ footer {
     <div class="nav-links">
       <a href="#services">Services</a>
       <a href="#why">Why Samskar</a>
+      <a href="/testimonials">Testimonials</a>
       <a href="#locations">Locations</a>
       <a href="#faq">FAQ</a>
       <a href="#contact">Contact</a>
@@ -1134,7 +1204,7 @@ footer {
   </div>
 </section>
 
-<section id="why">
+<section id="why" class="band-dark">
   <div class="wrap">
     <div class="section-head">
       <h2>Why choose Samskar</h2>
@@ -1255,6 +1325,7 @@ footer {
     <div class="name serif footer-mark">Samskar</div>
     <div class="footer-tag">Celebrate Faith. Create Memories.</div>
     <div class="footer-social">
+      <a href="/testimonials">Testimonials</a>
       <a href="https://instagram.com/samskar.official" target="_blank" rel="noopener">Instagram</a>
       <a href="https://wa.me/918088839040" target="_blank" rel="noopener">WhatsApp</a>
     </div>
