@@ -148,7 +148,7 @@ header {
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(var(--ivory-rgb),.92);
+  background: rgba(var(--ivory-rgb),.98);
   backdrop-filter: blur(6px);
   border-bottom: 1px solid var(--line);
 }
@@ -902,7 +902,6 @@ html.door-lock {
 }
 .faq-item {
   margin-bottom: 18px;
-  padding: 18px 22px;
   background: var(--ivory);
   border-radius: 16px;
   box-shadow: var(--neo-raised-sm);
@@ -915,6 +914,12 @@ html.door-lock {
   box-shadow: var(--neo-inset);
 }
 .faq-item summary {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 22px;
+  border-radius: 16px;
   cursor: pointer;
   font-family: 'Cormorant Garamond',serif;
   font-weight: 600;
@@ -927,15 +932,17 @@ html.door-lock {
 }
 .faq-item summary::after {
   content: "+";
-  float: right;
+  flex: none;
   color: var(--maroon);
   font-size: 20px;
+  line-height: 1.2;
 }
 .faq-item[open] summary::after {
   content: "–";
 }
 .faq-item p {
-  margin: 12px 0 0;
+  margin: -4px 22px 0;
+  padding-bottom: 20px;
   font-size: 14.5px;
   color: var(--ink-soft);
   line-height: 1.6;
@@ -1025,6 +1032,12 @@ footer {
   color: var(--maroon-deep);
   border-bottom: 1px solid var(--gold);
   padding-bottom: 2px;
+  position: relative;
+}
+.footer-social a::after {
+  content: "";
+  position: absolute;
+  inset: -12px -8px;          /* larger tap area, same look */
 }
 .footer-fine {
   margin-top: 0;

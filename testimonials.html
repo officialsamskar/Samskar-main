@@ -14,7 +14,7 @@
 <meta property="og:image" content="https://samskar.runs-on.dev/og-image.jpg">
 <meta property="og:site_name" content="Samskar">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#6E1F2B">
+<meta name="theme-color" content="#6A0B0B">
 <link rel="manifest" href="/site.webmanifest">
 <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
 <link rel="apple-touch-icon" href="/icon-192.png">
@@ -25,21 +25,21 @@
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Jost:wght@300;400;500;600&display=swap"></noscript>
 <style>
 :root {
-  --maroon: #6E1F2B;
-  --maroon-deep: #4A141C;
-  --gold: #C79A3C;
-  --gold-light: #E7C77E;
-  --green: #2F4A3C;
+  --maroon: #6A0B0B;
+  --maroon-deep: #450707;
+  --gold: #BF934C;
+  --gold-light: #DFBB82;
+  --green: #15401C;
   --ivory: #FBF3E6;
   --ivory-dark: #F1E3C9;
-  --ink: #2B1B12;
+  --ink: #1E1513;
   --ink-soft: #5A4A3D;
-  --maroon-rgb: 110,31,43;
-  --maroon-deep-rgb: 74,20,28;
-  --gold-rgb: 199,154,60;
-  --gold-light-rgb: 231,199,126;
+  --maroon-rgb: 106,11,11;
+  --maroon-deep-rgb: 69,7,7;
+  --gold-rgb: 191,147,76;
+  --gold-light-rgb: 223,187,130;
   --ivory-rgb: 251,243,230;
-  --ink-rgb: 43,27,18;
+  --ink-rgb: 30,21,19;
   --line: rgba(var(--gold-rgb),.4);
   /* Neumorphism: a lightened ivory highlight and a maroon-deep shadow */
   --neo-hi-rgb: 255,252,246;
@@ -91,7 +91,7 @@ header.top {
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(var(--ivory-rgb),.92);
+  background: rgba(var(--ivory-rgb),.98);
   backdrop-filter: blur(6px);
   border-bottom: 1px solid var(--line);
 }
@@ -160,16 +160,16 @@ header.top .wrap {
   box-shadow: 0 8px 20px rgba(var(--maroon-deep-rgb),.25);
 }
 .btn-ghost {
-  background: transparent;
-  border-color: var(--maroon);
+  background: var(--ivory);
+  border-color: transparent;
   color: var(--maroon-deep);
+  box-shadow: 5px 5px 12px var(--neo-lo), -5px -5px 12px var(--neo-hi);
 }
 .btn-ghost:hover {
-  background: var(--maroon);
-  color: var(--ivory);
+  box-shadow: inset 5px 5px 11px var(--neo-lo), inset -5px -5px 11px var(--neo-hi);
 }
 .btn-sm {
-  padding: 9px 18px;
+  padding: 12px 20px;
 }
 /* ---------- Page intro ---------- */
 main {
@@ -338,6 +338,12 @@ footer {
   color: var(--maroon-deep);
   border-bottom: 1px solid var(--gold);
   padding-bottom: 2px;
+  position: relative;
+}
+.footer-social a::after {
+  content: "";
+  position: absolute;
+  inset: -12px -8px;          /* larger tap area, same look */
 }
 .footer-fine {
   font-size: 12px;
